@@ -276,6 +276,7 @@ def run(log=print):
     (OUT / "data" / "courses.json").write_text(json.dumps(public, ensure_ascii=False), encoding="utf-8")
     # The dashboard needs to know which repository to talk to.
     repo = os.environ.get("GITHUB_REPOSITORY", "")
+    (OUT / "admin").mkdir(exist_ok=True)
     (OUT / "admin" / "repo.js").write_text(f"window.SITE_REPO = {json.dumps(repo)};\n", encoding="utf-8")
 
     build_index(courses, data, settings, base_url)
