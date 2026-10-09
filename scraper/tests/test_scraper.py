@@ -25,7 +25,7 @@ class TelegramParserTest(unittest.TestCase):
     def test_extracts_udemy_courses(self):
         found = []
         for m in self.messages:
-            found += list(courses_from_message(m, [0], {}, CFG, print))
+            found += list(courses_from_message(m, [0, 0], {}, CFG, print))
         self.assertEqual(
             sorted((c["slug"], c["coupon"]) for c in found),
             [("complete-python-bootcamp", "OCT2026FREE"),

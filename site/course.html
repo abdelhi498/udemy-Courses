@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{site_name}}">
+  <meta property="og:title" content="{{course_title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#6d28d9">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{prefix}}style.css">
+  <script type="application/ld+json">{{jsonld}}</script>
+  {{head_code}}
+</head>
+<body>
+  <header class="hero slim">
+    <div class="wrap topbar">
+      <a class="brand" href="{{prefix}}">🎓 <span>{{site_name}}</span></a>
+      <a class="back" href="{{prefix}}">← كل الكورسات</a>
+    </div>
+  </header>
+
+  <main class="wrap course-page">
+    {{ad_header}}
+
+    <article class="course">
+      <div class="course-media">{{image}}<span class="ph">{{provider}}</span></div>
+      <div class="course-info">
+        <div class="meta"><span class="badge provider">{{provider}}</span>{{status}}</div>
+        <h1>{{course_title}}</h1>
+        <p class="course-desc">{{course_desc}}</p>
+        <p class="time">نُشر <time datetime="{{posted}}">{{posted_date}}</time> • {{channel}}
+          <a href="{{source}}" target="_blank" rel="noopener nofollow" {{source_hidden}}>(المنشور الأصلي)</a></p>
+      </div>
+    </article>
+
+    <section class="unlock" id="unlock" data-seconds="{{seconds}}" data-target="{{target}}">
+      <div class="unlock-wait" id="wait">
+        <div class="ring" style="--p:0"><span id="left">{{seconds}}</span></div>
+        <div>
+          <h2>جاري تجهيز رابط الكورس…</h2>
+          <p>انتظر <b id="left-text">{{seconds}}</b> ثانية وسيظهر لك رابط التسجيل المجاني. شكراً لدعمك الموقع بمشاهدة الإعلان.</p>
+        </div>
+      </div>
+      {{ad_countdown}}
+      <div class="unlock-ready" id="ready" hidden>
+        <a class="btn primary big" id="go" target="_blank" rel="noopener nofollow sponsored">🎁 اذهب إلى الكورس مجاناً</a>
+        <p {{coupon_hidden}}>الكوبون: <button class="btn copy" id="copy" type="button">{{coupon}}</button></p>
+        <p class="hint">إذا ظهر السعر غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
+      </div>
+    </section>
+
+    {{ad_course_bottom}}
+
+    <h2 class="section-title">كورسات مجانية أخرى</h2>
+    <section class="grid">{{related}}</section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى المنصات الرسمية.</p>
+      <p class="social">
+        <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
+        <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
+      </p>
+      <p>© {{year}} {{site_name}}</p>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    const box = document.getElementById("unlock");
+    const total = Number(box.dataset.seconds) || 0;
+    const ring = box.querySelector(".ring");
+    let left = total;
+
+    function show() {
+      const url = atob(box.dataset.target);
+      document.getElementById("go").href = url;
+      document.getElementById("wait").hidden = true;
+      document.getElementById("ready").hidden = false;
+    }
+    function tick() {
+      // The timer only runs while the page is visible.
+      if (document.visibilityState === "visible") left -= 1;
+      document.getElementById("left").textContent = left;
+      document.getElementById("left-text").textContent = left;
+      ring.style.setProperty("--p", (total - left) / total);
+      if (left <= 0) { clearInterval(timer); show(); }
+    }
+    let timer;
+    if (total <= 0) show(); else timer = setInterval(tick, 1000);
+
+    const copy = document.getElementById("copy");
+    copy.addEventListener("click", async () => {
+      const code = copy.textContent;
+      try { await navigator.clipboard.writeText(code); copy.textContent = "تم النسخ ✓"; } catch {}
+      setTimeout(() => (copy.textContent = code), 1500);
+    });
+
+    // Relative dates + saved theme, like the home page.
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+    const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
+    document.querySelectorAll("time[datetime]").forEach((el) => {
+      const s = (new Date(el.getAttribute("datetime")) - Date.now()) / 1000;
+      for (const [u, sec] of [["day", 86400], ["hour", 3600], ["minute", 60]])
+        if (Math.abs(s) >= sec) { el.textContent = rtf.format(Math.round(s / sec), u); return; }
+      el.textContent = "الآن";
+    });
+  })();
+  </script>
+</body>
+</html>

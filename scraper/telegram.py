@@ -74,7 +74,7 @@ def parse_channel_page(html):
     return parser.messages
 
 
-def fetch_channel(channel, pages=1, log=print):
+def fetch_channel(channel, pages=1, log=print, errors=None):
     """Fetch the latest `pages` pages of a public channel (≈20 messages per page)."""
     messages = []
     before = None
@@ -84,9 +84,13 @@ def fetch_channel(channel, pages=1, log=print):
             _, html = http.fetch(url)
         except Exception as e:  # noqa: BLE001 - one bad channel must not stop the run
             log(f"  ! {channel}: {e}")
+            if errors is not None:
+                errors.append(str(e))
             break
         page = parse_channel_page(html)
         if not page:
+            if not messages and errors is not None:
+                errors.append("لا توجد رسائل: القناة غير موجودة أو ليست عامة")
             break
         messages.extend(page)
         before = min(m["id"] for m in page)

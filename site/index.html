@@ -3,25 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>كورسات مجانية | كوبونات يوديمي 100%</title>
-  <meta name="description" content="أحدث كورسات يوديمي وغيرها بخصم 100% — تتحدث تلقائياً كل ساعة.">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{site_name}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#6d28d9">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{{jsonld}}</script>
+  {{head_code}}
 </head>
 <body>
   <header class="hero">
     <div class="wrap">
       <div class="topbar">
-        <a class="brand" href="./">🎓 <span>كورسات مجانية</span></a>
+        <a class="brand" href="./">🎓 <span>{{site_name}}</span></a>
         <button id="theme" class="icon-btn" type="button" aria-label="تبديل الوضع الليلي">🌙</button>
       </div>
-      <h1>كورسات مدفوعة… <em>مجاناً 100%</em></h1>
+      <h1>{{tagline}}</h1>
       <p class="lead">نجمع لك كوبونات يوديمي والمنصات الأخرى لحظة نزولها. الكوبونات محدودة العدد والمدة، فسارع بالتسجيل.</p>
       <div class="stats">
-        <span><b id="count">—</b> كورس متاح</span>
-        <span>آخر تحديث: <b id="updated">—</b></span>
+        <span><b id="count">{{count}}</b> كورس متاح</span>
+        <span>آخر تحديث: <b id="updated" data-iso="{{updated}}">—</b></span>
       </div>
     </div>
   </header>
@@ -38,38 +49,27 @@
     </section>
     <div id="providers" class="chips" role="group" aria-label="المنصة"></div>
 
+    {{ad_header}}
+
     <p id="message" class="message" hidden></p>
-    <section id="grid" class="grid" aria-live="polite"></section>
+    <section id="grid" class="grid" aria-live="polite" data-ad-every="{{in_feed_every}}">{{cards}}</section>
     <div class="more"><button id="more" type="button" hidden>عرض المزيد</button></div>
+
+    {{ad_footer}}
   </main>
 
   <footer class="footer">
     <div class="wrap">
       <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى المنصات الرسمية. المصادر: قنوات تيليجرام عامة.</p>
-      <p><a href="https://www.facebook.com/profile.php?id=61575779696971" target="_blank" rel="noopener">تابعنا على فيسبوك</a></p>
+      <p class="social">
+        <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
+        <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
+      </p>
+      <p>© {{year}} {{site_name}}</p>
     </div>
   </footer>
 
-  <template id="card-tpl">
-    <article class="card">
-      <a class="thumb" target="_blank" rel="noopener"><img alt="" loading="lazy"><span class="ph"></span></a>
-      <div class="body">
-        <div class="meta">
-          <span class="badge provider"></span>
-          <span class="badge new" hidden>جديد</span>
-          <span class="badge status"></span>
-        </div>
-        <h3 class="title"></h3>
-        <p class="time"></p>
-        <div class="actions">
-          <a class="btn primary go" target="_blank" rel="noopener">احصل عليه مجاناً</a>
-          <button class="btn copy" type="button" title="نسخ الكوبون"></button>
-          <a class="btn ghost src" target="_blank" rel="noopener" title="المنشور الأصلي على تيليجرام">المصدر</a>
-        </div>
-      </div>
-    </article>
-  </template>
-
+  <template id="ad-infeed">{{in_feed_template}}</template>
   <script src="app.js"></script>
 </body>
 </html>

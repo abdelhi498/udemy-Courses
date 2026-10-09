@@ -3,10 +3,10 @@ name: Update courses
 on:
   schedule:
     - cron: "17 * * * *"   # every hour
-  workflow_dispatch:        # manual "Run workflow" button
+  workflow_dispatch:        # "Run workflow" button / "اسحب الكورسات الآن" in the dashboard
   push:
     branches: [main]
-    paths: ["docs/**", "scraper/**", ".github/workflows/update.yml"]
+    paths: ["site/**", "scraper/**", "data/settings.json", ".github/workflows/update.yml"]
 
 permissions:
   contents: write
@@ -20,6 +20,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -31,15 +32,16 @@ jobs:
         run: python -m unittest discover -s scraper/tests -t .
 
       - name: Scrape Telegram channels
-        run: python -m scraper.scrape
+        run: python -u -m scraper.scrape
 
       - name: Commit new data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/courses.json scraper/.cache.json
+          git add data/courses.json data/.cache.json
           if ! git diff --cached --quiet; then
             git commit -m "Update courses data"
+            git pull --rebase origin "${GITHUB_REF_NAME}"   # in case settings were saved meanwhile
             git push
           fi
 
@@ -53,9 +55,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}   # includes the data commit made by the scrape job
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build site
+        run: python -m scraper.build
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: _site
       - id: deploy
         uses: actions/deploy-pages@v4

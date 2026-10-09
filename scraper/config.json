@@ -1,8 +1,4 @@
 {
-  "telegram_channels": [
-    "Udemy4U",
-    "udemy_learning_courses"
-  ],
   "pages_per_channel": 3,
   "max_age_days": 7,
   "resolve_redirects": true,

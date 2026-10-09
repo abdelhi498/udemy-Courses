@@ -21,66 +21,63 @@
   const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
   function timeAgo(iso) {
     const s = (new Date(iso) - Date.now()) / 1000;
-    const units = [["day", 86400], ["hour", 3600], ["minute", 60]];
-    for (const [u, sec] of units) if (Math.abs(s) >= sec) return rtf.format(Math.round(s / sec), u);
+    for (const [u, sec] of [["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (Math.abs(s) >= sec) return rtf.format(Math.round(s / sec), u);
     return "الآن";
   }
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (ch) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   const isNew = (c) => Date.now() - new Date(c.posted_at) < 12 * 3600 * 1000;
 
-  // ---------- rendering ----------
+  // Times in the pre-rendered HTML are plain dates; make them relative.
+  function relativeTimes(scope) {
+    scope.querySelectorAll("time[datetime]").forEach((t) => { t.textContent = timeAgo(t.getAttribute("datetime")); });
+  }
+
+  // ---------- rendering (keep in sync with card_html in scraper/build.py) ----------
+  function cardHtml(c) {
+    const href = `course/${encodeURIComponent(c.page)}/`;
+    const img = c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()">` : "";
+    const status = c.status === "free"
+      ? '<span class="badge ok">✓ مجاني مؤكد</span>'
+      : '<span class="badge unknown">غير مؤكد</span>';
+    return `<article class="card"><a class="thumb" href="${href}">${img}<span class="ph">${esc(c.provider)}</span></a>
+      <div class="body"><div class="meta"><span class="badge provider">${esc(c.provider)}</span>
+      ${c.pinned ? '<span class="badge pin">📌 مميز</span>' : ""}${isNew(c) ? '<span class="badge new">جديد</span>' : ""}${status}</div>
+      <h3 class="title"><a href="${href}">${esc(c.title)}</a></h3>
+      <p class="time"><time datetime="${esc(c.posted_at)}"></time> • ${esc(c.channel)}</p>
+      <div class="actions"><a class="btn primary go" href="${href}">احصل عليه مجاناً</a></div></div></article>`;
+  }
+
   function filtered() {
     const q = state.query.trim().toLowerCase();
-    let list = state.all.filter((c) =>
+    const list = state.all.filter((c) =>
       (state.provider === "الكل" || c.provider === state.provider) &&
       (!state.verified || c.status === "free") &&
-      (!q || `${c.title} ${c.slug} ${c.description || ""}`.toLowerCase().includes(q)));
+      (!q || `${c.title} ${c.slug}`.toLowerCase().includes(q)));
     const by = {
-      new: (a, b) => b.posted_at.localeCompare(a.posted_at),
+      new: (a, b) => (b.pinned - a.pinned) || b.posted_at.localeCompare(a.posted_at),
       old: (a, b) => a.posted_at.localeCompare(b.posted_at),
       az: (a, b) => a.title.localeCompare(b.title),
     }[state.sort];
     return list.sort(by);
   }
 
-  function card(c) {
-    const node = $("card-tpl").content.firstElementChild.cloneNode(true);
-    const thumb = node.querySelector(".thumb");
-    thumb.href = c.url;
-    const img = node.querySelector("img");
-    node.querySelector(".ph").textContent = c.provider;
-    if (c.image) {
-      img.src = c.image;
-      img.onerror = () => img.removeAttribute("src");
-    }
-    img.alt = c.title;
-
-    node.querySelector(".provider").textContent = c.provider;
-    node.querySelector(".new").hidden = !isNew(c);
-    const st = node.querySelector(".status");
-    if (c.status === "free") { st.textContent = "✓ مجاني مؤكد"; st.classList.add("ok"); }
-    else { st.textContent = "غير مؤكد"; st.classList.add("unknown"); st.title = "لم نتمكن من التحقق من الكوبون تلقائياً"; }
-
-    node.querySelector(".title").textContent = c.title;
-    node.querySelector(".time").textContent = `نُشر ${timeAgo(c.posted_at)} • ${c.channel}`;
-    node.querySelector(".go").href = c.url;
-    node.querySelector(".src").href = c.source;
-
-    const copy = node.querySelector(".copy");
-    if (c.coupon) {
-      copy.textContent = c.coupon;
-      copy.addEventListener("click", async () => {
-        try { await navigator.clipboard.writeText(c.coupon); copy.textContent = "تم النسخ ✓"; }
-        catch { copy.textContent = c.coupon; }
-        setTimeout(() => (copy.textContent = c.coupon), 1500);
-      });
-    } else copy.hidden = true;
-    return node;
-  }
+  const grid = $("grid");
+  const adEvery = Number(grid.dataset.adEvery) || 6;
+  const adTpl = $("ad-infeed");
+  const hasInFeedAd = adTpl && adTpl.content.childElementCount > 0;
 
   function render() {
     const list = filtered();
-    const grid = $("grid");
-    grid.replaceChildren(...list.slice(0, state.shown).map(card));
+    grid.innerHTML = list.slice(0, state.shown).map(cardHtml).join("");
+    if (hasInFeedAd) {
+      const cards = [...grid.children];
+      cards.forEach((card, i) => {
+        if ((i + 1) % adEvery === 0) card.after(document.importNode(adTpl.content, true));
+      });
+    }
+    relativeTimes(grid);
     $("more").hidden = list.length <= state.shown;
     const msg = $("message");
     msg.hidden = list.length > 0;
@@ -115,18 +112,27 @@
   $("more").addEventListener("click", () => { state.shown += PAGE; render(); });
 
   // ---------- load ----------
+  // The first cards are already in the HTML (good for Google); here we only add
+  // search/filters and the "load more" button on top of them.
+  relativeTimes(grid);
+  const updated = $("updated");
+  if (updated.dataset.iso) updated.textContent = timeAgo(updated.dataset.iso);
+
   fetch(`data/courses.json?v=${Date.now()}`)
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((data) => {
       state.all = data.courses || [];
       $("count").textContent = state.all.length;
-      $("updated").textContent = data.updated_at ? timeAgo(data.updated_at) : "—";
+      if (data.updated_at) updated.textContent = timeAgo(data.updated_at);
       renderProviders();
-      render();
+      $("more").hidden = state.all.length <= state.shown;
+      if (!state.all.length) render();
     })
     .catch(() => {
-      const msg = $("message");
-      msg.hidden = false;
-      msg.textContent = "تعذّر تحميل البيانات، حاول تحديث الصفحة.";
+      if (!grid.children.length) {
+        const msg = $("message");
+        msg.hidden = false;
+        msg.textContent = "تعذّر تحميل البيانات، حاول تحديث الصفحة.";
+      }
     });
 })();

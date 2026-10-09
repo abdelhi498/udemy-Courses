@@ -1,0 +1,31 @@
+{
+  "site": {
+    "name": "كورسات مجانية",
+    "tagline": "كورسات مدفوعة… مجاناً 100%",
+    "description": "أحدث كورسات يوديمي وغيرها بخصم 100% — كوبونات مجانية تتحدث تلقائياً كل ساعة.",
+    "url": "https://abdelhi498.github.io/udemy-Courses/",
+    "custom_domain": "",
+    "facebook": "https://www.facebook.com/profile.php?id=61575779696971",
+    "telegram": "",
+    "head_code": ""
+  },
+  "sources": [
+    {"type": "telegram", "name": "Udemy4U", "enabled": true},
+    {"type": "telegram", "name": "udemy_learning_courses", "enabled": true}
+  ],
+  "ads": {
+    "countdown_seconds": 30,
+    "in_feed_every": 6,
+    "slots": {
+      "header": {"enabled": false, "html": ""},
+      "in_feed": {"enabled": false, "html": ""},
+      "countdown": {"enabled": false, "html": ""},
+      "course_bottom": {"enabled": false, "html": ""},
+      "footer": {"enabled": false, "html": ""}
+    },
+    "ads_txt": ""
+  },
+  "pinned": [],
+  "hidden": [],
+  "manual_courses": []
+}

@@ -17,7 +17,7 @@ OG_IMAGE_RE = re.compile(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"')
 def course_info(slug):
     """Return {id, title, image} from the public course page, or None."""
     try:
-        _, html = http.fetch(f"https://www.udemy.com/course/{slug}/", retries=0)
+        _, html = http.fetch(f"https://www.udemy.com/course/{slug}/", retries=0, timeout=12)
     except Exception:  # noqa: BLE001
         return None
     m = COURSE_ID_RE.search(html)
@@ -39,7 +39,7 @@ def coupon_status(course_id, coupon):
         f"?couponCode={quote(coupon)}&components=purchase"
     )
     try:
-        data = http.fetch_json(url, retries=0)
+        data = http.fetch_json(url, retries=0, timeout=12)
         price = data["purchase"]["data"]["pricing_result"]["price"]["amount"]
     except Exception:  # noqa: BLE001
         return None
