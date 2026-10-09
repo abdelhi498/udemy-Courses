@@ -1,22 +1,4 @@
 {
- "tg:Udemy4U/87999": {
-  "id": "tg:Udemy4U/87999",
-  "provider": "Udemy",
-  "slug": "isaca-certified-information-security-manager-practice-exams",
-  "page_slug": "comptia-project-plus-practice-exams",
-  "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
-  "title": "Highest_Rated",
-  "image": "https://cdn4.telesco.pe/file/Tll4DfMQ4AnPDjFwI5nNuj-4AcsaivOd4zFIhfwXh4j_4aR_7TBc_sDnT5TORyEvNO-VuhTPd6UWWj3cngV86pfte9pWj2lRcZ5wocTacMByueHuLU1j2uFozeK4gjtSxleB-Eiv29l3aKaFGYUKOYSgol0ksBXU3JIFV6SVdTtwP6hsAsS1s_ws-HhXFkeUOpc-7VbRX61ee3-d_z2_XkCzn9Z4mIcBnYpkN609hYkrUoSZu1A4AnsjokK7RVA27P6lOmlCMK18b_vo3ee3HEww_YzAIjwT0SjWLeMcUdQ56FziZBsD1j2CUmtXCk47_qSWHVr6FSI-ViOzi8PRkQ.jpg",
-  "category": "Highest Rated",
-  "instructor": "Nex Arc",
-  "rating": 5.0,
-  "reviews": 39,
-  "channel": "Udemy4U",
-  "posted_at": "2026-10-08T14:26:03+00:00",
-  "coupon": null,
-  "status": "expired",
-  "removed_at": "2026-10-09T07:36:27+00:00"
- },
  "rd:84975": {
   "id": "rd:84975",
   "provider": "Udemy",
@@ -50,5 +32,23 @@
   "coupon": null,
   "status": "expired",
   "removed_at": "2026-10-09T07:36:27+00:00"
+ },
+ "tg:Udemy4U/87997": {
+  "id": "tg:Udemy4U/87997",
+  "provider": "Udemy",
+  "slug": "isaca-certified-information-security-manager-practice-exams",
+  "page_slug": "sc-900-practice-exams-security-compliance-identity",
+  "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
+  "title": "Highest_Rated",
+  "image": "https://cdn4.telesco.pe/file/VZNZAR_MOrv5tybpyJe9Z7irGdJpvOwtJYKFeMai13zXujO2a75oOhkcNFw3tR7-D6ILLafPGFgylto_zZMvinpIf0O_gSvqqME4pJkoDDmsOGzCkEZE_PbaBO1DoMviP98JF-NukcW073tB4d-4Y-bi06HtKyvfYUECuZyXip5vH5ecMo_pl29VxZQItL7X0mjovgr7c18QvQw8cHe8gKNiFpGAZaduGvcdHcSA_x1QuT4NYiTjXICngvA2cBgPuAsiGxfCMFvC0ONKURyIPfLKSBrp31FYTT6VL5f5A1IxNqil-aHA50j4zkTdNpyVkcJovq-nuQtJaOKuX1T-PA.jpg",
+  "category": "Highest Rated",
+  "instructor": "Nex Arc",
+  "rating": 4.9,
+  "reviews": 47,
+  "channel": "Udemy4U",
+  "posted_at": "2026-10-08T12:50:21+00:00",
+  "coupon": null,
+  "status": "expired",
+  "removed_at": "2026-10-09T07:36:56+00:00"
  }
 }
