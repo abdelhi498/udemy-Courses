@@ -1,7 +1,7 @@
 (() => {
   const PAGE = 24;
   const $ = (id) => document.getElementById(id);
-  const state = { all: [], provider: "الكل", query: "", sort: "new", verified: false, shown: PAGE };
+  const state = { all: [], provider: "الكل", query: "", sort: "new", verified: false, lang: "", shown: PAGE };
 
   // ---------- theme ----------
   const root = document.documentElement;
@@ -61,6 +61,7 @@
     const list = state.all.filter((c) =>
       (state.provider === "الكل" || c.provider === state.provider) &&
       (!state.verified || c.status === "free") &&
+      (!state.lang || c.language === state.lang) &&
       (!q || `${c.title} ${c.slug} ${c.category || ""} ${c.instructor || ""}`.toLowerCase().includes(q)));
     const by = {
       new: (a, b) => (b.pinned - a.pinned) || b.posted_at.localeCompare(a.posted_at),
@@ -115,6 +116,20 @@
     t = setTimeout(() => { state.query = e.target.value; state.shown = PAGE; render(); }, 150);
   });
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  const LANG_AR = { English: "الإنجليزية", Arabic: "العربية", Spanish: "الإسبانية", French: "الفرنسية",
+    Portuguese: "البرتغالية", German: "الألمانية", Turkish: "التركية", Italian: "الإيطالية", Hindi: "الهندية",
+    Japanese: "اليابانية", Indonesian: "الإندونيسية", Russian: "الروسية", Vietnamese: "الفيتنامية",
+    Polish: "البولندية", Urdu: "الأردية", Chinese: "الصينية", Korean: "الكورية" };
+  function renderLanguages() {
+    const counts = {};
+    state.all.forEach((c) => c.language && (counts[c.language] = (counts[c.language] || 0) + 1));
+    const sel = $("lang");
+    sel.length = 1;
+    Object.keys(counts).sort((a, b) => counts[b] - counts[a]).forEach((l) =>
+      sel.add(new Option(`${LANG_AR[l] || l} (${counts[l]})`, l)));
+    sel.hidden = sel.length <= 2;
+  }
+  $("lang").addEventListener("change", (e) => { state.lang = e.target.value; state.shown = PAGE; render(); });
   $("verified").addEventListener("change", (e) => { state.verified = e.target.checked; state.shown = PAGE; render(); });
   $("more").addEventListener("click", () => { state.shown += PAGE; render(); });
 
@@ -132,6 +147,7 @@
       $("count").textContent = state.all.length;
       if (data.updated_at) updated.textContent = timeAgo(data.updated_at);
       renderProviders();
+      renderLanguages();
       $("more").hidden = state.all.length <= state.shown;
       if (!state.all.length) render();
     })
