@@ -28,6 +28,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # latest commit, not the one the run was queued on
 
       - uses: actions/setup-python@v5
         with:
@@ -49,7 +51,8 @@ jobs:
           [ -f data/debug-messages.json ] && git add data/debug-messages.json
           if ! git diff --cached --quiet; then
             git commit -m "Update courses data"
-            git pull --rebase origin "${GITHUB_REF_NAME}"   # in case settings were saved meanwhile
+            # Settings may have been saved meanwhile; on a clash keep this run's fresh data files.
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
             git push
           fi
 
