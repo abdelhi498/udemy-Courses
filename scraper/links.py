@@ -100,6 +100,12 @@ def resolve(url, cache, log=print, timeout=10):
         return None  # this site keeps failing; don't waste the run on it
     result = None
     try:
+        # Many links just redirect to Udemy; read the target without visiting Udemy.
+        target = http.redirect_target(url, timeout=timeout)
+        if target and normalise_udemy(target):
+            cache[url] = target
+            _host_failures[host] = 0
+            return target
         final_url, body = http.fetch(url, retries=0, timeout=timeout)
         if normalise_udemy(final_url):
             result = final_url

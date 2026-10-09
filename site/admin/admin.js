@@ -252,11 +252,14 @@
         const st = stats[src.name];
         const info = !st ? "لم يُسحب بعد (سيُسحب في التحديث القادم)"
           : st.error ? `<span class="badge err">مشكلة</span> ${esc(st.error)}`
-          : `${st.messages} رسالة • ${st.courses} كورس في آخر سحب`;
+          : src.type === "telegram" ? `${st.messages} رسالة • ${st.courses} كورس في آخر سحب`
+          : `${st.courses} كورس في آخر سحب`;
         const tg = src.type === "telegram";
         const label = tg ? `@${esc(src.name)}` : esc(src.name);
         const kind = tg ? "تيليجرام" : "موقع كوبونات (روابط يوديمي مباشرة)";
-        const view = tg ? `https://t.me/s/${encodeURIComponent(src.name)}` : `https://${esc(src.name)}`;
+        const SITE_URLS = { realdiscount: "https://www.real.discount/", tutorialbar: "https://www.tutorialbar.com/",
+          discudemy: "https://www.discudemy.com/", udemyfreebies: "https://www.udemyfreebies.com/" };
+        const view = tg ? `https://t.me/s/${encodeURIComponent(src.name)}` : (SITE_URLS[src.type] || "#");
         return `<div class="item">
           <label class="switch" title="تفعيل/إيقاف"><input type="checkbox" data-act="toggle-source" data-i="${i}" ${src.enabled !== false ? "checked" : ""}></label>
           <div class="grow"><div class="t" dir="ltr" style="text-align:right">${label}</div><div class="s">${kind} • ${info}</div></div>

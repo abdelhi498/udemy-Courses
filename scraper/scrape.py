@@ -12,7 +12,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import links, posts, realdiscount, telegram, udemy
+from . import links, posts, realdiscount, sites, telegram, udemy
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scraper" / "config.json"
@@ -297,13 +297,17 @@ def run(log=print):
                           "error": errors[0] if errors else None}
         log(f"- {channel}: {len(messages)} messages, {found_in_channel} course links")
 
-    # Coupon websites with a public list (direct Udemy links).
+    # Coupon websites (direct Udemy links).
     for src in enabled:
-        if src.get("type") != "realdiscount":
+        kind = src.get("type")
+        if kind not in sites.SOURCES and kind != "realdiscount":
             continue
         errors = []
-        found = realdiscount.fetch(cutoff.isoformat(timespec="seconds"), pages=int(src.get("pages") or 3),
-                                   log=log, errors=errors)
+        if kind == "realdiscount":
+            found = realdiscount.fetch(cutoff.isoformat(timespec="seconds"), pages=int(src.get("pages") or 3),
+                                       log=log, errors=errors)
+        else:
+            found = sites.SOURCES[kind](cache=cache, log=log, errors=errors)
         for course in found:
             add(course)
         stats[src["name"]] = {"messages": len(found), "courses": len(found),

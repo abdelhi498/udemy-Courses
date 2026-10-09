@@ -46,3 +46,24 @@ def fetch(url, timeout=20, retries=2, accept="text/html,application/json"):
 def fetch_json(url, **kwargs):
     _, body = fetch(url, accept="application/json", **kwargs)
     return json.loads(body)
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
+_no_redirect_opener = urllib.request.build_opener(_NoRedirect)
+
+
+def redirect_target(url, timeout=15):
+    """Where a link redirects to, without opening the target (Udemy blocks bots).
+    Returns the Location header, or None when the page does not redirect."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html"})
+    try:
+        with _no_redirect_opener.open(req, timeout=timeout):
+            return None
+    except urllib.error.HTTPError as e:
+        if 300 <= e.code < 400:
+            return e.headers.get("Location")
+        raise

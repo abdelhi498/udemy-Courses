@@ -17,6 +17,21 @@
       "pages": 3
     },
     {
+      "type": "udemyfreebies",
+      "name": "udemyfreebies",
+      "enabled": true
+    },
+    {
+      "type": "discudemy",
+      "name": "discudemy",
+      "enabled": true
+    },
+    {
+      "type": "tutorialbar",
+      "name": "tutorialbar",
+      "enabled": true
+    },
+    {
       "type": "telegram",
       "name": "Udemy4U",
       "enabled": true
