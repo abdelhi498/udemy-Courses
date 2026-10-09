@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  {{head}}
+</head>
+<body data-countdown="{{seconds}}">
+  {{topnav}}
+
+  <header class="hero hero-sm">
+    <div class="wrap">
+      <p class="breadcrumb light"><a href="{{prefix}}">الرئيسية</a> › التصنيفات › {{category}}</p>
+      <h1>كورسات {{category}} مجانية</h1>
+      <p class="lead">{{description}}</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="toolbar"><div class="chips">{{other_cats}}</div></div>
+    {{ad_header}}
+    <section class="grid">{{cards}}</section>
+    {{ad_footer}}
+  </main>
+
+  {{footer}}
+  {{body_end}}
+</body>
+</html>

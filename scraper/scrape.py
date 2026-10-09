@@ -12,12 +12,14 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import links, posts, realdiscount, sites, telegram, udemy
+from . import links, posts, realdiscount, settings as settings_mod, sites, telegram, udemy
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scraper" / "config.json"
 DATA_PATH = ROOT / "data" / "courses.json"
 SETTINGS_PATH = ROOT / "data" / "settings.json"
+ARCHIVE_PATH = ROOT / "data" / "archive.json"
+ARCHIVE_DAYS = 60
 CACHE_PATH = ROOT / "data" / ".cache.json"
 
 FREE_WORDS = re.compile(r"100\s*%|free|مجان|كوبون|coupon", re.I)
@@ -246,6 +248,24 @@ def probe_sites(debug):
     return report
 
 
+def update_archive(previous, current, now):
+    """Remember courses that just left the list, so their page can say "expired"
+    for a while instead of disappearing (people still arrive from Google and shares)."""
+    archive = load_json(ARCHIVE_PATH, {})
+    live = {c["id"] for c in current}
+    for cid, c in previous.items():
+        if cid not in live and cid not in archive:
+            keep = {k: c.get(k) for k in ("id", "provider", "slug", "page_slug", "url", "title", "image", "category",
+                                           "subtitle", "instructor", "language", "rating", "reviews", "price",
+                                           "channel", "posted_at") if c.get(k) is not None}
+            keep.update(coupon=None, status="expired", removed_at=now.isoformat(timespec="seconds"))
+            archive[cid] = keep
+    for cid in list(archive):
+        if cid in live or now - datetime.fromisoformat(archive[cid]["removed_at"]) > timedelta(days=ARCHIVE_DAYS):
+            del archive[cid]
+    ARCHIVE_PATH.write_text(json.dumps(archive, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def run(log=print):
     cfg = load_json(CONFIG_PATH, {})
     cfg.setdefault("telegram_channels", [])
@@ -259,13 +279,14 @@ def run(log=print):
     cfg.setdefault("resolve_timeout", 25)
     cfg.setdefault("max_validation_seconds", 300)
 
+    settings = settings_mod.normalise(load_json(SETTINGS_PATH, {}))
+    cfg["max_age_days"] = int(settings["content"].get("max_age_days") or cfg["max_age_days"])
     cache = load_json(CACHE_PATH, {})
     previous = {c["id"]: c for c in load_json(DATA_PATH, {}).get("courses", [])}
     cutoff = now_utc() - timedelta(days=cfg["max_age_days"])
     # [lookups left, monotonic deadline] — keeps one slow site from stalling the run.
     resolve_budget = [cfg["max_redirect_lookups"], time.monotonic() + cfg["max_redirect_seconds"]]
 
-    settings = load_json(SETTINGS_PATH, {})
     enabled = [src for src in settings.get("sources", []) if src.get("enabled", True)]
     channels = [src["name"] for src in enabled if src.get("type") == "telegram"]
     channels += cfg.get("telegram_channels", [])  # legacy option
@@ -341,6 +362,8 @@ def run(log=print):
     if cfg["validate_udemy"]:
         enrich_with_udemy(courses, cfg, cache, log)
     courses = [c for c in courses if c["status"] != "expired"]
+
+    update_archive(previous, courses, now_utc())
 
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     DATA_PATH.write_text(

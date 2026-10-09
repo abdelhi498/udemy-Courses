@@ -12,6 +12,7 @@ on:
   push:
     branches: [main]
     paths: ["site/**", "scraper/**", "data/settings.json", ".github/workflows/update.yml"]
+    # (the guard compares data/settings.json before and after each push)
 
 permissions:
   contents: write
@@ -24,7 +25,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Puts back any settings section changed by someone without permission for it.
+  guard:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 50
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check settings permissions
+        run: python -m scraper.guard
+        env:
+          BEFORE: ${{ github.event.before }}
+      - name: Save restored settings
+        run: |
+          if ! git diff --quiet data/settings.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "Restore settings changed without permission by ${GITHUB_ACTOR}"
+            git push origin HEAD:main
+          fi
+
   scrape:
+    needs: guard
+    if: always() && needs.guard.result != 'failure'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -48,7 +76,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/courses.json data/.cache.json
+          git add data/courses.json data/.cache.json data/archive.json
           [ -f data/debug-messages.json ] && git add data/debug-messages.json
           if ! git diff --cached --quiet; then
             git commit -m "Update courses data"
@@ -62,7 +90,7 @@ jobs:
   handover:
     needs: scrape
     # (scheduled runs always start on the default branch and carry no repository info)
-    if: github.event_name != 'schedule' && github.ref_name != github.event.repository.default_branch
+    if: always() && needs.scrape.result == 'success' && github.event_name != 'schedule' && github.ref_name != github.event.repository.default_branch
     runs-on: ubuntu-latest
     steps:
       - name: Start a deploy run on the default branch
@@ -72,7 +100,7 @@ jobs:
 
   deploy:
     needs: scrape
-    if: github.event_name == 'schedule' || github.ref_name == github.event.repository.default_branch
+    if: always() && needs.scrape.result == 'success' && (github.event_name == 'schedule' || github.ref_name == github.event.repository.default_branch)
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -97,3 +125,6 @@ jobs:
           path: _site
       - id: deploy
         uses: actions/deploy-pages@v4
+
+      - name: Notify search engines (IndexNow)
+        run: python -m scraper.indexnow

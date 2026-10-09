@@ -1,50 +1,22 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <meta name="description" content="{{description}}">
-  <link rel="canonical" href="{{canonical}}">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{{site_name}}">
-  <meta property="og:title" content="{{title}}">
-  <meta property="og:description" content="{{description}}">
-  <meta property="og:url" content="{{canonical}}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#6d28d9">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">{{jsonld}}</script>
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  {{head_code}}
+  {{head}}
 </head>
-<body data-countdown="{{seconds}}">
-  <nav class="topnav">
-    <div class="wrap topbar">
-      <a class="brand" href="./"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
-      <div class="nav-actions">
-        <a class="icon-btn" href="{{telegram}}" target="_blank" rel="noopener" title="تيليجرام" {{telegram_hidden}}>✈️</a>
-        <a class="icon-btn" href="{{facebook}}" target="_blank" rel="noopener" title="فيسبوك" {{facebook_hidden}}>f</a>
-        <button id="theme" class="icon-btn" type="button" aria-label="تبديل الوضع الليلي">🌙</button>
-      </div>
-    </div>
-  </nav>
+<body data-countdown="{{seconds}}" data-per-page="{{per_page}}" data-sort="{{default_sort}}">
+  {{topnav}}
 
   <header class="hero">
     <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span> تحديث تلقائي كل ساعة</span>
+      <span class="eyebrow"><span class="dot"></span> {{eyebrow}}</span>
       <h1>{{tagline}}</h1>
-      <p class="lead">نجمع لك كوبونات يوديمي بخصم 100% لحظة نزولها من أكثر من مصدر. الكوبونات محدودة العدد والمدة، فسارع بالتسجيل قبل انتهائها.</p>
+      <p class="lead">{{lead}}</p>
       <form class="hero-search" role="search" onsubmit="return false">
         <span class="ico">🔍</span>
-        <input id="search" type="search" placeholder="ابحث عن كورس… Python, Excel, تصميم" autocomplete="off" aria-label="بحث">
+        <input id="search" type="search" placeholder="{{search_placeholder}}" autocomplete="off" aria-label="بحث">
         <button class="btn primary" type="submit">بحث</button>
       </form>
-      <div class="stats">
+      <div class="stats" {{stats_hidden}}>
         <span class="stat"><b id="count">{{count}}</b> كورس مجاني الآن</span>
         <span class="stat">آخر تحديث: <b id="updated" data-iso="{{updated}}">—</b></span>
       </div>
@@ -52,8 +24,8 @@
   </header>
 
   <main class="wrap">
-    <section class="toolbar" aria-label="تصفية">
-      <div id="cats" class="chips" role="group" aria-label="التصنيف"></div>
+    <section class="toolbar" aria-label="تصفية" {{filters_hidden}}>
+      <div id="cats" class="chips" role="group" aria-label="التصنيف" {{cats_hidden}}></div>
       <div class="filters">
         <span class="count" id="result-count"></span>
         <select id="lang" aria-label="اللغة"><option value="">🌐 كل اللغات</option></select>
@@ -76,23 +48,8 @@
     {{ad_footer}}
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer-grid">
-      <div>
-        <a class="brand" href="./"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
-        <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى يوديمي مباشرة.</p>
-        <p>© {{year}} {{site_name}}</p>
-      </div>
-      <div class="social">
-        <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
-        <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
-      </div>
-    </div>
-  </footer>
-
+  {{footer}}
   <template id="ad-infeed">{{in_feed_template}}</template>
-  <template id="ad-countdown">{{ad_countdown}}</template>
-  <script src="unlock.js"></script>
-  <script src="app.js"></script>
+  {{body_end}}
 </body>
 </html>

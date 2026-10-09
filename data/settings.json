@@ -1,13 +1,141 @@
 {
   "site": {
     "name": "كورسات مجانية",
-    "tagline": "كورسات مدفوعة… مجاناً 100%",
-    "description": "أحدث كورسات يوديمي وغيرها بخصم 100% — كوبونات مجانية تتحدث تلقائياً كل ساعة.",
     "url": "https://abdelhi498.github.io/udemy-Courses/",
     "custom_domain": "",
-    "facebook": "https://www.facebook.com/profile.php?id=61575779696971",
-    "telegram": "",
-    "head_code": ""
+    "head_code": "",
+    "social": {
+      "facebook": "https://www.facebook.com/profile.php?id=61575779696971",
+      "telegram": "",
+      "whatsapp": "",
+      "youtube": "",
+      "instagram": "",
+      "x": "",
+      "tiktok": ""
+    }
+  },
+  "appearance": {
+    "logo_emoji": "🎓",
+    "logo_url": "",
+    "favicon_url": "",
+    "accent": "#6d28d9",
+    "accent2": "#a435f0",
+    "hero_from": "#2e1065",
+    "hero_to": "#a435f0",
+    "radius": 16,
+    "default_theme": "auto",
+    "cards_per_page": 24,
+    "default_sort": "new",
+    "sections": {
+      "stats": true,
+      "filters": true,
+      "categories": true,
+      "related": true,
+      "footer_categories": true,
+      "theme_toggle": true
+    },
+    "custom_css": ""
+  },
+  "texts": {
+    "eyebrow": "تحديث تلقائي كل ساعة",
+    "tagline": "كورسات مدفوعة… مجاناً 100%",
+    "lead": "نجمع لك كوبونات يوديمي بخصم 100% لحظة نزولها من أكثر من مصدر. الكوبونات محدودة العدد والمدة، فسارع بالتسجيل قبل انتهائها.",
+    "search_placeholder": "ابحث عن كورس… Python, Excel, تصميم",
+    "card_button": "احصل عليه مجاناً",
+    "course_button": "🎁 احصل على الكورس مجاناً",
+    "course_hint": "إذا ظهر السعر على المنصة غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.",
+    "popup_title": "🎁 شاهد الإعلان للحصول على الكورس مجاناً",
+    "popup_message": "للحصول على الكورس والتحويل إلى رابطه، شاهد الإعلان حتى ينتهي العدّاد ({seconds} ثانية). الإعلانات هي ما يُبقي هذا الموقع مجانياً.",
+    "popup_go": "🎓 اذهب إلى الكورس الآن",
+    "popup_close": "إغلاق الإعلان وعدم الحصول على الكورس",
+    "footer_text": "الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى يوديمي مباشرة.",
+    "expired_notice": "انتهى هذا الكوبون أو نفدت استخداماته. تصفّح الكورسات المجانية المتاحة الآن بالأسفل."
+  },
+  "announcement": {
+    "enabled": false,
+    "text": "",
+    "link": "",
+    "color": "#f59e0b"
+  },
+  "nav": [],
+  "pages": [
+    {
+      "slug": "about",
+      "title": "من نحن",
+      "in_footer": true,
+      "in_nav": false,
+      "html": false,
+      "body": "نحن موقع يجمع لك كوبونات الكورسات المدفوعة على يوديمي التي تنزل بخصم 100%، من عدة مصادر موثوقة، وتتحدث تلقائياً كل ساعة.\n\nهدفنا أن يتعلم أي شخص مهارات جديدة مجاناً: البرمجة، والتصميم، والتسويق، واللغات وغيرها.\n\n- كل الروابط تذهب إلى يوديمي مباشرة.\n- لا نطلب أي بيانات شخصية.\n- الكوبونات محدودة العدد والمدة، لذلك سارع بالتسجيل."
+    },
+    {
+      "slug": "privacy",
+      "title": "سياسة الخصوصية",
+      "in_footer": true,
+      "in_nav": false,
+      "html": false,
+      "body": "نحترم خصوصيتك. لا يطلب هذا الموقع إنشاء حساب ولا يجمع بيانات شخصية بشكل مباشر.\n\n### ملفات تعريف الارتباط (Cookies) والإعلانات\n\nقد نستخدم خدمات طرف ثالث مثل Google Analytics وشبكات الإعلانات (مثل Google AdSense)، وهي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات مناسبة لك وقياس الزيارات. يمكنك تعطيل ملفات تعريف الارتباط من إعدادات متصفحك.\n\n### الروابط الخارجية\n\nيحتوي الموقع على روابط لمواقع أخرى مثل يوديمي، ولسنا مسؤولين عن سياسات الخصوصية الخاصة بها.\n\n### التواصل\n\nلأي استفسار بخصوص الخصوصية تواصل معنا من صفحة \"اتصل بنا\"."
+    },
+    {
+      "slug": "terms",
+      "title": "شروط الاستخدام",
+      "in_footer": true,
+      "in_nav": false,
+      "html": false,
+      "body": "- الموقع يعرض روابط لكورسات على منصات خارجية ولا يستضيف أي محتوى.\n- الكوبونات يضعها المدرّبون وقد تنتهي في أي وقت دون إشعار.\n- جميع العلامات التجارية مملوكة لأصحابها، والموقع غير تابع ليوديمي.\n- باستخدامك للموقع فأنت توافق على هذه الشروط."
+    },
+    {
+      "slug": "contact",
+      "title": "اتصل بنا",
+      "in_footer": true,
+      "in_nav": true,
+      "html": false,
+      "body": "يسعدنا تواصلك معنا لأي اقتراح أو إعلان أو بلاغ عن كوبون لا يعمل.\n\n- فيسبوك: [صفحتنا على فيسبوك](https://www.facebook.com/profile.php?id=61575779696971)"
+    }
+  ],
+  "seo": {
+    "description": "أحدث كورسات يوديمي وغيرها بخصم 100% — كوبونات مجانية تتحدث تلقائياً كل ساعة.",
+    "title_home": "{site} | كوبونات يوديمي مجانية 100%",
+    "title_course": "{title} — مجاناً بكوبون 100% | {site}",
+    "title_category": "كورسات {category} مجانية بكوبون 100% | {site}",
+    "og_image": "",
+    "twitter": "",
+    "google_verification": "",
+    "bing_verification": "",
+    "yandex_verification": "",
+    "ga_id": "",
+    "noindex": false,
+    "category_pages": true,
+    "rss": true,
+    "keep_expired_days": 30,
+    "indexnow": false,
+    "indexnow_key": ""
+  },
+  "ads": {
+    "countdown_seconds": 30,
+    "in_feed_every": 6,
+    "slots": {
+      "header": {
+        "enabled": false,
+        "html": ""
+      },
+      "in_feed": {
+        "enabled": false,
+        "html": ""
+      },
+      "countdown": {
+        "enabled": false,
+        "html": ""
+      },
+      "course_bottom": {
+        "enabled": false,
+        "html": ""
+      },
+      "footer": {
+        "enabled": false,
+        "html": ""
+      }
+    },
+    "ads_txt": ""
   },
   "sources": [
     {
@@ -42,35 +170,16 @@
       "enabled": true
     }
   ],
-  "ads": {
-    "countdown_seconds": 30,
-    "in_feed_every": 6,
-    "slots": {
-      "header": {
-        "enabled": false,
-        "html": ""
-      },
-      "in_feed": {
-        "enabled": false,
-        "html": ""
-      },
-      "countdown": {
-        "enabled": false,
-        "html": ""
-      },
-      "course_bottom": {
-        "enabled": false,
-        "html": ""
-      },
-      "footer": {
-        "enabled": false,
-        "html": ""
-      }
-    },
-    "ads_txt": ""
+  "show_indirect_links": false,
+  "content": {
+    "max_age_days": 7,
+    "blocked_words": [],
+    "allowed_languages": [],
+    "min_rating": 0,
+    "overrides": {}
   },
   "pinned": [],
   "hidden": [],
   "manual_courses": [],
-  "show_indirect_links": false
+  "users": []
 }

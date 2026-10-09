@@ -6,6 +6,14 @@
 // The wait time comes from <body data-countdown="30"> and the ad from <template id="ad-countdown">.
 (() => {
   const seconds = Math.max(0, Number(document.body.dataset.countdown) || 0);
+  const T = Object.assign({
+    popup_title: "🎁 شاهد الإعلان للحصول على الكورس مجاناً",
+    popup_message: "للحصول على الكورس والتحويل إلى رابطه، شاهد الإعلان حتى ينتهي العدّاد ({seconds} ثانية). الإعلانات هي ما يُبقي هذا الموقع مجانياً.",
+    popup_go: "🎓 اذهب إلى الكورس الآن",
+    popup_close: "إغلاق الإعلان وعدم الحصول على الكورس",
+  }, window.SITE_TEXTS || {});
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (ch) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   let modal, timer, lastFocus;
 
   function build() {
@@ -15,19 +23,18 @@
     modal.innerHTML = `
       <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="m-head">
         <button class="modal-x" type="button" data-close aria-label="إغلاق">✕</button>
-        <h2 id="m-head">🎁 شاهد الإعلان للحصول على الكورس مجاناً</h2>
+        <h2 id="m-head">${esc(T.popup_title)}</h2>
         <p class="m-course"></p>
         <div class="m-ad"></div>
         <div class="m-wait">
           <div class="ring" style="--p:0"><span class="m-left"></span></div>
-          <p>للحصول على الكورس والتحويل إلى رابطه، شاهد الإعلان حتى ينتهي العدّاد
-             (<b class="m-left"></b> ثانية). الإعلانات هي ما يُبقي هذا الموقع مجانياً.</p>
+          <p>${esc(T.popup_message).replace("{seconds}", '<b class="m-left"></b>')}</p>
         </div>
         <div class="m-ready" hidden>
-          <a class="btn primary big m-go" target="_blank" rel="noopener nofollow sponsored">🎓 اذهب إلى الكورس الآن</a>
+          <a class="btn primary big m-go" target="_blank" rel="noopener nofollow sponsored">${esc(T.popup_go)}</a>
           <p class="m-coupon" hidden>الكوبون: <button class="btn copy" type="button"></button></p>
         </div>
-        <button class="m-close" type="button" data-close>إغلاق الإعلان وعدم الحصول على الكورس</button>
+        <button class="m-close" type="button" data-close>${esc(T.popup_close)}</button>
       </div>`;
     document.body.appendChild(modal);
     modal.addEventListener("click", (e) => {
@@ -75,7 +82,7 @@
 
     modal.querySelector(".m-wait").hidden = false;
     modal.querySelector(".m-ready").hidden = true;
-    modal.querySelector(".m-close").textContent = "إغلاق الإعلان وعدم الحصول على الكورس";
+    modal.querySelector(".m-close").textContent = T.popup_close;
     modal.hidden = false;
     document.body.classList.add("modal-open");
 

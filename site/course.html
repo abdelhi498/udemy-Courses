@@ -1,39 +1,15 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <meta name="description" content="{{description}}">
-  <link rel="canonical" href="{{canonical}}">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="{{site_name}}">
-  <meta property="og:title" content="{{course_title}}">
-  <meta property="og:description" content="{{description}}">
-  <meta property="og:url" content="{{canonical}}">
-  <meta property="og:image" content="{{og_image}}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#6d28d9">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{prefix}}style.css">
-  <script type="application/ld+json">{{jsonld}}</script>
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  {{head_code}}
+  {{head}}
 </head>
 <body data-countdown="{{seconds}}">
-  <nav class="topnav">
-    <div class="wrap topbar">
-      <a class="brand" href="{{prefix}}"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
-      <a class="back" href="{{prefix}}">كل الكورسات ←</a>
-    </div>
-  </nav>
+  {{topnav}}
 
   <main class="wrap">
     <p class="breadcrumb"><a href="{{prefix}}">الرئيسية</a> › {{category_crumb}}<span>{{course_title}}</span></p>
     {{ad_header}}
+    {{expired_notice}}
 
     <div class="course-layout">
       <article class="course-main">
@@ -45,53 +21,28 @@
           <a href="{{source}}" target="_blank" rel="noopener nofollow" {{source_hidden}}>(المنشور الأصلي)</a></p>
       </article>
 
-      <aside class="buy-box">
+      <aside class="buy-box" {{buy_hidden}}>
         <div class="buy-media">{{image}}<span class="ph">{{provider}}</span></div>
         <div class="buy-body">
           <div class="price-line"><span class="price-free">مجاناً</span>{{price_old}}</div>
-          <a class="btn primary big" href="#" data-unlock data-target="{{target}}" data-title="{{course_title}}" data-coupon="{{coupon}}">🎁 احصل على الكورس مجاناً</a>
+          <a class="btn primary big" href="#" data-unlock data-target="{{target}}" data-title="{{course_title}}" data-coupon="{{coupon}}">{{course_button}}</a>
           <ul class="trust">
             <li>✅ رابط مباشر إلى {{provider}}</li>
             <li>⏳ الكوبون محدود العدد والمدة</li>
             <li>🎓 شهادة إتمام من {{provider}} عند إنهاء الكورس</li>
           </ul>
-          <p class="hint">إذا ظهر السعر على المنصة غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
+          <p class="hint">{{course_hint}}</p>
         </div>
       </aside>
     </div>
 
     {{ad_course_bottom}}
 
-    <h2 class="section-title">كورسات مجانية أخرى</h2>
-    <section class="grid">{{related}}</section>
+    <h2 class="section-title" {{related_hidden}}>كورسات مجانية أخرى</h2>
+    <section class="grid" {{related_hidden}}>{{related}}</section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer-grid">
-      <div>
-        <a class="brand" href="{{prefix}}"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
-        <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى يوديمي مباشرة.</p>
-        <p>© {{year}} {{site_name}}</p>
-      </div>
-      <div class="social">
-        <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
-        <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
-      </div>
-    </div>
-  </footer>
-
-  <template id="ad-countdown">{{ad_countdown}}</template>
-  <script src="{{prefix}}unlock.js"></script>
-  <script>
-  (() => {
-    const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
-    document.querySelectorAll("time[datetime]").forEach((el) => {
-      const s = (new Date(el.getAttribute("datetime")) - Date.now()) / 1000;
-      for (const [u, sec] of [["day", 86400], ["hour", 3600], ["minute", 60]])
-        if (Math.abs(s) >= sec) { el.textContent = rtf.format(Math.round(s / sec), u); return; }
-      el.textContent = "الآن";
-    });
-  })();
-  </script>
+  {{footer}}
+  {{body_end}}
 </body>
 </html>

@@ -1,30 +1,13 @@
 (() => {
-  const PAGE = 24;
-  const ALL = "";
   const $ = (id) => document.getElementById(id);
-  const state = { all: [], cat: ALL, query: "", sort: "new", verified: false, lang: "", shown: PAGE };
+  const PAGE = Number(document.body.dataset.perPage) || 24;
+  const ALL = "";
+  const params = new URLSearchParams(location.search);
+  const state = { all: [], cat: ALL, query: params.get("q") || "", sort: document.body.dataset.sort || "new",
+                  verified: false, lang: "", shown: PAGE };
 
-  // ---------- theme ----------
-  const root = document.documentElement;
-  const isDark = () => root.dataset.theme
-    ? root.dataset.theme === "dark"
-    : matchMedia("(prefers-color-scheme: dark)").matches;
-  const syncThemeIcon = () => { $("theme").textContent = isDark() ? "☀️" : "🌙"; };
-  $("theme").addEventListener("click", () => {
-    root.dataset.theme = isDark() ? "light" : "dark";
-    try { localStorage.setItem("theme", root.dataset.theme); } catch {}
-    syncThemeIcon();
-  });
-  syncThemeIcon();
-
-  // ---------- helpers ----------
-  const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
-  function timeAgo(iso) {
-    const s = (new Date(iso) - Date.now()) / 1000;
-    for (const [u, sec] of [["day", 86400], ["hour", 3600], ["minute", 60]])
-      if (Math.abs(s) >= sec) return rtf.format(Math.round(s / sec), u);
-    return "الآن";
-  }
+  const timeAgo = window.timeAgo;
+  const TEXTS = window.SITE_TEXTS || {};
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (ch) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   const b64 = (s) => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
@@ -35,10 +18,7 @@
     Polish: "البولندية", Urdu: "الأردية", Chinese: "الصينية", Korean: "الكورية" };
   const langAr = (l) => LANG_AR[l] || l;
 
-  // Times in the pre-rendered HTML are plain dates; make them relative.
-  function relativeTimes(scope) {
-    scope.querySelectorAll("time[datetime]").forEach((t) => { t.textContent = timeAgo(t.getAttribute("datetime")); });
-  }
+  const relativeTimes = window.relativeTimes;
 
   // ---------- rendering (keep in sync with card_html in scraper/build.py) ----------
   function cardHtml(c) {
@@ -63,7 +43,7 @@
       ${facts ? `<p class="facts">${facts}</p>` : ""}
       <div class="card-foot"><p class="time"><time datetime="${esc(c.posted_at)}"></time></p>
       <a class="btn primary go" href="${href}" data-unlock data-target="${esc(b64(c.url))}"
-        data-title="${esc(c.title)}" data-coupon="${esc(c.coupon || "")}">احصل عليه مجاناً</a></div></div></article>`;
+        data-title="${esc(c.title)}" data-coupon="${esc(c.coupon || "")}">${esc(TEXTS.card_button || "احصل عليه مجاناً")}</a></div></div></article>`;
   }
 
   function filtered() {
@@ -146,7 +126,6 @@
   // ---------- load ----------
   // The first cards are already in the HTML (good for Google); here we only add
   // search/filters and the "load more" button on top of them.
-  relativeTimes(grid);
   const updated = $("updated");
   if (updated.dataset.iso) updated.textContent = timeAgo(updated.dataset.iso);
 
@@ -158,9 +137,14 @@
       if (data.updated_at) updated.textContent = timeAgo(data.updated_at);
       renderCategories();
       renderLanguages();
+      $("sort").value = state.sort;
       $("result-count").textContent = `${state.all.length} كورس`;
       $("more").hidden = state.all.length <= state.shown;
-      if (!state.all.length) render();
+      // Re-render only when needed, so the pre-rendered cards (and their ads) stay.
+      if (!state.all.length || state.query || state.sort !== "new") {
+        $("search").value = state.query;
+        render();
+      }
     })
     .catch(() => {
       if (!grid.children.length) {

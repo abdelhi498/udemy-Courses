@@ -71,6 +71,12 @@ img { max-width: 100%; }
   width: 40px; height: 40px; font-size: 1.05rem; cursor: pointer; display: grid; place-items: center; text-decoration: none;
 }
 .back { font-weight: 700; text-decoration: none; color: var(--muted); }
+.nav-links { display: flex; gap: 4px; margin-inline-start: auto; overflow-x: auto; }
+.nav-links a { text-decoration: none; font-weight: 700; font-size: .92rem; padding: 6px 12px; border-radius: 10px; white-space: nowrap; color: var(--muted); }
+.nav-links a:hover { background: var(--surface-2); color: var(--accent); }
+.brand-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.announce { color: #fff; text-align: center; font-weight: 700; font-size: .92rem; padding: 8px 16px; }
+.announce a { color: inherit; }
 .back:hover { color: var(--accent); }
 
 /* ============ Hero ============ */
@@ -198,13 +204,36 @@ img { max-width: 100%; }
 .grid > .ad { grid-column: 1 / -1; margin: 0; }
 
 /* ============ Footer ============ */
-.footer { border-top: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: .9rem; padding: 26px 0 30px; margin-top: 20px; }
-.footer-grid { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
+.footer { border-top: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: .9rem; padding: 30px 0 20px; margin-top: 30px; }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
+@media (max-width: 760px) { .footer-cols { grid-template-columns: 1fr 1fr; } .f-brand { grid-column: 1 / -1; } }
+.footer h4 { color: var(--text); margin: 4px 0 10px; font-size: 1rem; }
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer li { margin: 6px 0; }
+.footer li a { text-decoration: none; }
+.footer li a:hover { color: var(--accent); }
+.f-brand .social { margin-top: 12px; flex-wrap: wrap; }
+.copy { border-top: 1px solid var(--border); margin-top: 22px !important; padding-top: 14px; text-align: center; }
 .footer .brand { color: var(--text); }
 .social { display: flex; gap: 10px; }
 .social a { text-decoration: none; font-weight: 700; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); padding: 6px 14px; border-radius: 10px; }
 .social a:hover { color: var(--accent); border-color: var(--accent); }
 .footer p { margin: 4px 0; }
+
+/* ============ Category & static pages ============ */
+.hero-sm { padding: 30px 0 60px; }
+.hero-sm h1 { font-size: clamp(1.5rem, 4vw, 2.3rem); margin: 6px 0; }
+.breadcrumb.light, .breadcrumb.light a { color: rgb(255 255 255 / .85); margin-top: 0; }
+a.chip { text-decoration: none; }
+.prose {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: clamp(18px, 4vw, 40px); max-width: 860px; margin: 0 auto 20px; line-height: 1.9;
+}
+.prose h1 { margin-top: 0; }
+.prose a { color: var(--accent); }
+.expired {
+  background: var(--warn-bg); color: var(--warn); border-radius: 12px; padding: 12px 16px; font-weight: 700; margin-bottom: 16px;
+}
 
 /* ============ Course page ============ */
 .breadcrumb { font-size: .85rem; color: var(--muted); margin: 18px 0 12px; }
