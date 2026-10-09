@@ -80,7 +80,7 @@
   }
   async function loadRuns() {
     try {
-      const r = await gh(`/actions/workflows/${WORKFLOW}/runs?per_page=8`);
+      const r = await gh(`/actions/workflows/${WORKFLOW}/runs?per_page=10`);
       S.runs = r.workflow_runs || [];
     } catch { S.runs = []; }
   }
@@ -395,7 +395,8 @@
     btn.disabled = true;
     btn.textContent = "⏳ جاري التشغيل…";
     try {
-      await gh(`/actions/workflows/${WORKFLOW}/dispatches`, { method: "POST", body: JSON.stringify({ ref: BRANCH }) });
+      // Pages only deploys runs started from the default branch.
+      await gh(`/actions/workflows/${WORKFLOW}/dispatches`, { method: "POST", body: JSON.stringify({ ref: S.defaultBranch || BRANCH }) });
       toast("✓ بدأ سحب الكورسات. يستغرق عادةً من 2 إلى 6 دقائق.");
       setTimeout(async () => { await loadRuns(); if (S.tab === "overview") render(); }, 4000);
     } catch (e) {
@@ -499,7 +500,8 @@
     $("login").hidden = true;
     $("app").hidden = false;
     $("view").innerHTML = '<p class="empty">جاري التحميل…</p>';
-    await Promise.all([loadSettings(), loadCourses(), loadRuns()]);
+    const [info] = await Promise.all([gh(""), loadSettings(), loadCourses(), loadRuns()]);
+    S.defaultBranch = info.default_branch;
     const tab = location.hash.slice(1);
     if (views[tab]) S.tab = tab;
     render();
