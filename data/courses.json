@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-09T06:33:13+00:00",
- "count": 402,
+ "updated_at": "2026-10-09T06:37:34+00:00",
+ "count": 403,
  "sources": {
   "Udemy4U": {
    "messages": 60,
@@ -17,11 +17,6 @@
    "courses": 299,
    "error": null
   },
-  "udemyfreebies": {
-   "messages": 0,
-   "courses": 0,
-   "error": "لم نجد روابط يوديمي (ربما تغيّر تصميم الموقع)"
-  },
   "discudemy": {
    "messages": 15,
    "courses": 15,
@@ -34,6 +29,25 @@
   }
  },
  "courses": [
+  {
+   "id": "rd:30423",
+   "provider": "Udemy",
+   "slug": "learn-cpp-programming-beginner-to-advanced",
+   "page_slug": "learn-cpp-programming-beginner-to-advanced",
+   "coupon": "294B9EC3648308378A8C",
+   "url": "https://www.udemy.com/course/learn-cpp-programming-beginner-to-advanced/?couponCode=294B9EC3648308378A8C",
+   "title": "Learn C++ Programming - Beginner to Advanced",
+   "image": "https://img-c.udemycdn.com/course/750x422/4871278_dc28_4.jpg",
+   "channel": "real.discount",
+   "posted_at": "2026-10-09T06:33:03+00:00",
+   "status": "unknown",
+   "category": "IT Certifications",
+   "language": "English",
+   "lectures": 10.5,
+   "rating": 4.3,
+   "price": 19.99,
+   "checked_at": "2026-10-09T06:37:33+00:00"
+  },
   {
    "id": "tb:dft-interview-certification-practice-tests",
    "provider": "Udemy",
@@ -49,6 +63,7 @@
    "instructor": "Practice Pro",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7264073_0154_4.jpg",
@@ -70,6 +85,7 @@
    "instructor": "Crack The Interview Co.",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7304095_9049.jpg",
@@ -91,6 +107,7 @@
    "instructor": "Yogesh Dhiman",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7370833_d533.jpg",
@@ -112,6 +129,7 @@
    "instructor": "Dr. Amar Massoud",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "Business",
    "image": "https://img-c.udemycdn.com/course/480x270/7368865_c648.jpg",
@@ -133,6 +151,7 @@
    "instructor": "Dr. Amar Massoud",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "Office Productivity",
    "image": "https://img-c.udemycdn.com/course/480x270/7366505_418d_2.jpg",
@@ -154,6 +173,7 @@
    "instructor": "Dr Amar Massoud",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "French",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7361185_fb39.jpg",
@@ -175,6 +195,7 @@
    "instructor": "Dr Amar Massoud",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "French",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7358723_e9fc.jpg",
@@ -196,6 +217,7 @@
    "instructor": "Standarity German",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "German",
    "category": "Business",
    "image": "https://img-c.udemycdn.com/course/480x270/7364843_1b9f.jpg",
@@ -217,10 +239,12 @@
    "instructor": "Standarity German",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "German",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7365185_9e9c.jpg",
-   "price": 84.99
+   "price": 84.99,
+   "checked_at": "2026-10-09T06:37:33+00:00"
   },
   {
    "id": "tb:c-programming-basics-to-advanced-level",
@@ -237,10 +261,12 @@
    "instructor": "FAISAL FIRDOUS",
    "rating": 4.2,
    "reviews": 658,
+   "students": 4606,
    "language": "English",
    "category": "Development",
    "image": "https://img-c.udemycdn.com/course/480x270/5181098_fe2d_2.jpg",
-   "price": 84.99
+   "price": 84.99,
+   "checked_at": "2026-10-09T06:37:33+00:00"
   },
   {
    "id": "tb:aws-ai-practitioner-aif-c01-practice-tests-2026-m",
@@ -257,10 +283,12 @@
    "instructor": "ADE - ACADEMY",
    "rating": 4.7,
    "reviews": 100,
+   "students": 1000,
    "language": "English",
    "category": "IT & Software",
    "image": "https://img-c.udemycdn.com/course/480x270/7300149_7992.jpg",
-   "price": 84.99
+   "price": 84.99,
+   "checked_at": "2026-10-09T06:37:33+00:00"
   },
   {
    "id": "tb:the-complete-manager-management-skills-for-all-levels",
@@ -277,6 +305,7 @@
    "instructor": "Daniel K'Owuoche",
    "rating": 4.4,
    "reviews": 105,
+   "students": 735,
    "language": "English",
    "category": "Business",
    "image": "https://img-c.udemycdn.com/course/480x270/5911350_c35a_3.jpg",
@@ -2560,27 +2589,6 @@
    "category": "General Health"
   },
   {
-   "id": "tg:Udemy4U/87999",
-   "provider": "Udemy",
-   "slug": "isaca-certified-information-security-manager-practice-exams",
-   "page_slug": "comptia-project-plus-practice-exams",
-   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
-   "title": "Highest_Rated",
-   "image": "https://cdn4.telesco.pe/file/Tll4DfMQ4AnPDjFwI5nNuj-4AcsaivOd4zFIhfwXh4j_4aR_7TBc_sDnT5TORyEvNO-VuhTPd6UWWj3cngV86pfte9pWj2lRcZ5wocTacMByueHuLU1j2uFozeK4gjtSxleB-Eiv29l3aKaFGYUKOYSgol0ksBXU3JIFV6SVdTtwP6hsAsS1s_ws-HhXFkeUOpc-7VbRX61ee3-d_z2_XkCzn9Z4mIcBnYpkN609hYkrUoSZu1A4AnsjokK7RVA27P6lOmlCMK18b_vo3ee3HEww_YzAIjwT0SjWLeMcUdQ56FziZBsD1j2CUmtXCk47_qSWHVr6FSI-ViOzi8PRkQ.jpg",
-   "source": "https://t.me/Udemy4U/87999",
-   "channel": "Udemy4U",
-   "posted_at": "2026-10-08T14:26:03+00:00",
-   "status": "unknown",
-   "duration": "1020 questions • 6 practice tests. • 6 quizzes",
-   "uses_left": 56,
-   "rating": 5.0,
-   "reviews": 39,
-   "instructor": "Nex Arc",
-   "updated": "07/26",
-   "category": "Highest Rated",
-   "coupon": "4ED51A0AB16342E36F5F"
-  },
-  {
    "id": "rd:83124",
    "provider": "Udemy",
    "slug": "islam-explained-in-90-minutes",
@@ -2867,6 +2875,27 @@
    "language": "English",
    "lectures": 1,
    "price": 34.99
+  },
+  {
+   "id": "tg:Udemy4U/87997",
+   "provider": "Udemy",
+   "slug": "isaca-certified-information-security-manager-practice-exams",
+   "page_slug": "sc-900-practice-exams-security-compliance-identity",
+   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
+   "title": "Highest_Rated",
+   "image": "https://cdn4.telesco.pe/file/VZNZAR_MOrv5tybpyJe9Z7irGdJpvOwtJYKFeMai13zXujO2a75oOhkcNFw3tR7-D6ILLafPGFgylto_zZMvinpIf0O_gSvqqME4pJkoDDmsOGzCkEZE_PbaBO1DoMviP98JF-NukcW073tB4d-4Y-bi06HtKyvfYUECuZyXip5vH5ecMo_pl29VxZQItL7X0mjovgr7c18QvQw8cHe8gKNiFpGAZaduGvcdHcSA_x1QuT4NYiTjXICngvA2cBgPuAsiGxfCMFvC0ONKURyIPfLKSBrp31FYTT6VL5f5A1IxNqil-aHA50j4zkTdNpyVkcJovq-nuQtJaOKuX1T-PA.jpg",
+   "source": "https://t.me/Udemy4U/87997",
+   "channel": "Udemy4U",
+   "posted_at": "2026-10-08T12:50:21+00:00",
+   "status": "unknown",
+   "duration": "1020 questions • 6 practice tests. • 6 quizzes",
+   "uses_left": 76,
+   "rating": 4.9,
+   "reviews": 47,
+   "instructor": "Nex Arc",
+   "updated": "07/26",
+   "category": "Highest Rated",
+   "coupon": "4ED51A0AB16342E36F5F"
   },
   {
    "id": "tg:udemy_learning_courses/47001",
