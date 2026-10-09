@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}   # latest commit, not the one the run was queued on
+          ref: main   # always main, even when the hourly schedule starts from another default branch
 
       - uses: actions/setup-python@v5
         with:
@@ -52,8 +52,8 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update courses data"
             # Settings may have been saved meanwhile; on a clash keep this run's fresh data files.
-            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
-            git push
+            git pull --rebase -X theirs origin main
+            git push origin HEAD:main
           fi
 
   deploy:
@@ -65,7 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}   # includes the data commit made by the scrape job
+          ref: main   # includes the data commit made by the scrape job
 
       - uses: actions/setup-python@v5
         with:
@@ -75,6 +75,8 @@ jobs:
         run: python -m scraper.build
 
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true   # turn GitHub Pages on if it is still off
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
