@@ -21,7 +21,7 @@
   <script type="application/ld+json">{{jsonld}}</script>
   {{head_code}}
 </head>
-<body>
+<body data-countdown="{{seconds}}">
   <header class="hero">
     <div class="wrap">
       <div class="topbar">
@@ -70,6 +70,8 @@
   </footer>
 
   <template id="ad-infeed">{{in_feed_template}}</template>
+  <template id="ad-countdown">{{ad_countdown}}</template>
+  <script src="unlock.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -27,6 +27,7 @@
   }
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (ch) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  const b64 = (s) => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
   const isNew = (c) => Date.now() - new Date(c.posted_at) < 12 * 3600 * 1000;
 
   // Times in the pre-rendered HTML are plain dates; make them relative.
@@ -50,7 +51,8 @@
       <h3 class="title"><a href="${href}">${esc(c.title)}</a></h3>
       ${facts ? `<p class="facts">${esc(facts)}</p>` : ""}
       <p class="time"><time datetime="${esc(c.posted_at)}"></time> • ${esc(c.channel)}</p>
-      <div class="actions"><a class="btn primary go" href="${href}">احصل عليه مجاناً</a></div></div></article>`;
+      <div class="actions"><a class="btn primary go" href="${href}" data-unlock data-target="${esc(b64(c.url))}"
+        data-title="${esc(c.title)}" data-coupon="${esc(c.coupon || "")}">احصل عليه مجاناً</a></div></div></article>`;
   }
 
   function filtered() {

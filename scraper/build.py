@@ -62,6 +62,10 @@ def fmt_date(iso):
     return d.strftime("%Y-%m-%d")
 
 
+def b64(text):
+    return base64.b64encode(text.encode()).decode()
+
+
 def facts_html(c):
     """Small facts line under a card title: rating, coupons left, duration."""
     out = []
@@ -89,7 +93,8 @@ def card_html(c, prefix):
         f'<h3 class="title"><a href="{href}">{esc(c["title"])}</a></h3>'
         + (f'<p class="facts">{esc(facts)}</p>' if facts else "") +
         f'<p class="time"><time datetime="{esc(c["posted_at"])}">{fmt_date(c["posted_at"])}</time> • {esc(c["channel"])}</p>'
-        f'<div class="actions"><a class="btn primary go" href="{href}">احصل عليه مجاناً</a></div></div></article>'
+        f'<div class="actions"><a class="btn primary go" href="{href}" data-unlock data-target="{b64(c["url"])}" '
+        f'data-title="{esc(c["title"])}" data-coupon="{esc(c.get("coupon") or "")}">احصل عليه مجاناً</a></div></div></article>'
     )
 
 
@@ -126,6 +131,8 @@ def common_ctx(settings, prefix):
         "telegram": esc(s.get("telegram") or ""),
         "telegram_hidden": "" if s.get("telegram") else "hidden",
         "ad_header": ad(settings, "header"),
+        "ad_countdown": ad(settings, "countdown"),
+        "seconds": max(0, min(120, int(settings["ads"].get("countdown_seconds") or 0))),
         "ad_footer": ad(settings, "footer"),
         "year": datetime.now(timezone.utc).year,
     }
@@ -173,7 +180,6 @@ def build_index(courses, data, settings, base_url):
 
 def build_course_pages(courses, settings, base_url):
     tpl = (SITE_SRC / "course.html").read_text(encoding="utf-8")
-    seconds = max(0, min(120, int(settings["ads"].get("countdown_seconds") or 0)))
     for i, c in enumerate(courses):
         prefix = "../../"
         url = f'{base_url}course/{c["page"]}/'
@@ -228,12 +234,9 @@ def build_course_pages(courses, settings, base_url):
             channel=esc(c["channel"]),
             source=esc(c.get("source") or ""),
             source_hidden="" if c.get("source") else "hidden",
-            seconds=seconds,
             # Encoded so the link is not sitting in plain text before the countdown ends.
-            target=base64.b64encode(c["url"].encode()).decode(),
+            target=b64(c["url"]),
             coupon=esc(c.get("coupon") or ""),
-            coupon_hidden="" if c.get("coupon") else "hidden",
-            ad_countdown=ad(settings, "countdown"),
             ad_course_bottom=ad(settings, "course_bottom"),
             related="".join(card_html(r, prefix) for r in related),
         )

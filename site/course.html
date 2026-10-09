@@ -22,7 +22,7 @@
   <script type="application/ld+json">{{jsonld}}</script>
   {{head_code}}
 </head>
-<body>
+<body data-countdown="{{seconds}}">
   <header class="hero slim">
     <div class="wrap topbar">
       <a class="brand" href="{{prefix}}">🎓 <span>{{site_name}}</span></a>
@@ -45,20 +45,9 @@
       </div>
     </article>
 
-    <section class="unlock" id="unlock" data-seconds="{{seconds}}" data-target="{{target}}">
-      <div class="unlock-wait" id="wait">
-        <div class="ring" style="--p:0"><span id="left">{{seconds}}</span></div>
-        <div>
-          <h2>جاري تجهيز رابط الكورس…</h2>
-          <p>انتظر <b id="left-text">{{seconds}}</b> ثانية وسيظهر لك رابط التسجيل المجاني. شكراً لدعمك الموقع بمشاهدة الإعلان.</p>
-        </div>
-      </div>
-      {{ad_countdown}}
-      <div class="unlock-ready" id="ready" hidden>
-        <a class="btn primary big" id="go" target="_blank" rel="noopener nofollow sponsored">🎁 اذهب إلى الكورس مجاناً</a>
-        <p {{coupon_hidden}}>الكوبون: <button class="btn copy" id="copy" type="button">{{coupon}}</button></p>
-        <p class="hint">إذا ظهر السعر غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
-      </div>
+    <section class="unlock">
+      <a class="btn primary big" href="#" data-unlock data-target="{{target}}" data-title="{{course_title}}" data-coupon="{{coupon}}">🎁 احصل على الكورس مجاناً</a>
+      <p class="hint">إذا ظهر السعر على المنصة غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
     </section>
 
     {{ad_course_bottom}}
@@ -78,37 +67,10 @@
     </div>
   </footer>
 
+  <template id="ad-countdown">{{ad_countdown}}</template>
+  <script src="{{prefix}}unlock.js"></script>
   <script>
   (() => {
-    const box = document.getElementById("unlock");
-    const total = Number(box.dataset.seconds) || 0;
-    const ring = box.querySelector(".ring");
-    let left = total;
-
-    function show() {
-      const url = atob(box.dataset.target);
-      document.getElementById("go").href = url;
-      document.getElementById("wait").hidden = true;
-      document.getElementById("ready").hidden = false;
-    }
-    function tick() {
-      // The timer only runs while the page is visible.
-      if (document.visibilityState === "visible") left -= 1;
-      document.getElementById("left").textContent = left;
-      document.getElementById("left-text").textContent = left;
-      ring.style.setProperty("--p", (total - left) / total);
-      if (left <= 0) { clearInterval(timer); show(); }
-    }
-    let timer;
-    if (total <= 0) show(); else timer = setInterval(tick, 1000);
-
-    const copy = document.getElementById("copy");
-    copy.addEventListener("click", async () => {
-      const code = copy.textContent;
-      try { await navigator.clipboard.writeText(code); copy.textContent = "تم النسخ ✓"; } catch {}
-      setTimeout(() => (copy.textContent = code), 1500);
-    });
-
     // Relative dates + saved theme, like the home page.
     try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
     const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
