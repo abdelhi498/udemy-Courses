@@ -28,6 +28,21 @@ IGNORED_HOSTS = ("t.me", "telegram.me", "telegram.org", "youtube.com", "youtu.be
                  "facebook.com", "instagram.com", "twitter.com", "x.com", "whatsapp.com")
 
 
+# Coupon sites that wrap a Udemy coupon in their own page: link -> course slug.
+AGGREGATORS = {
+    "courson.xyz": re.compile(r"^/coupon/([\w\-]+)"),
+}
+
+
+def aggregator_slug(url):
+    """Return (site, slug) for a known coupon-site link, else None."""
+    p = urlparse(url)
+    host = p.netloc.lower().removeprefix("www.")
+    pattern = AGGREGATORS.get(host)
+    m = pattern.match(p.path) if pattern else None
+    return (host, m.group(1)) if m else None
+
+
 def provider_for(url):
     p = urlparse(url)
     host = p.netloc.lower().removeprefix("www.")
@@ -72,7 +87,7 @@ def is_ignored(url):
 _host_failures = {}
 
 
-def resolve(url, cache, log=print):
+def resolve(url, cache, log=print, timeout=10):
     """Follow a redirect/landing page and return the Udemy coupon URL it points to.
 
     Many channels link to their own site (or a shortener) instead of Udemy directly.
@@ -85,7 +100,7 @@ def resolve(url, cache, log=print):
         return None  # this site keeps failing; don't waste the run on it
     result = None
     try:
-        final_url, body = http.fetch(url, retries=0, timeout=10)
+        final_url, body = http.fetch(url, retries=0, timeout=timeout)
         if normalise_udemy(final_url):
             result = final_url
         else:

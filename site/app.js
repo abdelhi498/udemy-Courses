@@ -38,13 +38,17 @@
   function cardHtml(c) {
     const href = `course/${encodeURIComponent(c.page)}/`;
     const img = c.image ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()">` : "";
-    const status = c.status === "free"
-      ? '<span class="badge ok">✓ مجاني مؤكد</span>'
-      : '<span class="badge unknown">غير مؤكد</span>';
+    const status = c.status === "free" ? '<span class="badge ok">✓ مجاني مؤكد</span>' : "";
+    const cat = c.category ? `<span class="badge">${esc(c.category)}</span>` : "";
+    const facts = [
+      c.rating ? `⭐ ${c.rating.toFixed(1)}${c.reviews ? ` (${c.reviews.toLocaleString("en")})` : ""}` : "",
+      c.uses_left ? `⏳ ${c.uses_left} كوبون متبقي` : "",
+    ].filter(Boolean).join(" • ");
     return `<article class="card"><a class="thumb" href="${href}">${img}<span class="ph">${esc(c.provider)}</span></a>
       <div class="body"><div class="meta"><span class="badge provider">${esc(c.provider)}</span>
-      ${c.pinned ? '<span class="badge pin">📌 مميز</span>' : ""}${isNew(c) ? '<span class="badge new">جديد</span>' : ""}${status}</div>
+      ${c.pinned ? '<span class="badge pin">📌 مميز</span>' : ""}${isNew(c) ? '<span class="badge new">جديد</span>' : ""}${status}${cat}</div>
       <h3 class="title"><a href="${href}">${esc(c.title)}</a></h3>
+      ${facts ? `<p class="facts">${esc(facts)}</p>` : ""}
       <p class="time"><time datetime="${esc(c.posted_at)}"></time> • ${esc(c.channel)}</p>
       <div class="actions"><a class="btn primary go" href="${href}">احصل عليه مجاناً</a></div></div></article>`;
   }
@@ -54,7 +58,7 @@
     const list = state.all.filter((c) =>
       (state.provider === "الكل" || c.provider === state.provider) &&
       (!state.verified || c.status === "free") &&
-      (!q || `${c.title} ${c.slug}`.toLowerCase().includes(q)));
+      (!q || `${c.title} ${c.slug} ${c.category || ""} ${c.instructor || ""}`.toLowerCase().includes(q)));
     const by = {
       new: (a, b) => (b.pinned - a.pinned) || b.posted_at.localeCompare(a.posted_at),
       old: (a, b) => a.posted_at.localeCompare(b.posted_at),

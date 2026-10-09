@@ -46,7 +46,7 @@ def render(template, **ctx):
 
 def page_slug(course):
     """URL-safe slug for the course page (stable across coupon changes)."""
-    base = course["slug"] if course["provider"] == "Udemy" else course["url"]
+    base = course.get("page_slug") or (course["slug"] if course["provider"] == "Udemy" else course["url"])
     return re.sub(r"[^a-z0-9\-]+", "-", base.lower()).strip("-")[:80] or "course"
 
 
@@ -62,20 +62,32 @@ def fmt_date(iso):
     return d.strftime("%Y-%m-%d")
 
 
+def facts_html(c):
+    """Small facts line under a card title: rating, coupons left, duration."""
+    out = []
+    if c.get("rating"):
+        out.append(f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,})' if c.get("reviews") else ""))
+    if c.get("uses_left"):
+        out.append(f'⏳ {c["uses_left"]} كوبون متبقي')
+    return " • ".join(out)
+
+
 def card_html(c, prefix):
     """Server-side version of the card that site/app.js renders (keep them in sync)."""
     img = (f'<img src="{esc(c["image"])}" alt="{esc(c["title"])}" loading="lazy" '
            f'onerror="this.remove()">' if c.get("image") else "")
-    status = ('<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free"
-              else '<span class="badge unknown">غير مؤكد</span>')
+    status = '<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free" else ""
     pin = '<span class="badge pin">📌 مميز</span>' if c.get("pinned") else ""
     age = datetime.now(timezone.utc) - datetime.fromisoformat(c["posted_at"])
     new = '<span class="badge new">جديد</span>' if age.total_seconds() < 12 * 3600 else ""
+    cat = f'<span class="badge">{esc(c["category"])}</span>' if c.get("category") else ""
+    facts = facts_html(c)
     href = f'{prefix}course/{c["page"]}/'
     return (
         f'<article class="card"><a class="thumb" href="{href}">{img}<span class="ph">{esc(c["provider"])}</span></a>'
-        f'<div class="body"><div class="meta"><span class="badge provider">{esc(c["provider"])}</span>{pin}{new}{status}</div>'
+        f'<div class="body"><div class="meta"><span class="badge provider">{esc(c["provider"])}</span>{pin}{new}{status}{cat}</div>'
         f'<h3 class="title"><a href="{href}">{esc(c["title"])}</a></h3>'
+        + (f'<p class="facts">{esc(facts)}</p>' if facts else "") +
         f'<p class="time"><time datetime="{esc(c["posted_at"])}">{fmt_date(c["posted_at"])}</time> • {esc(c["channel"])}</p>'
         f'<div class="actions"><a class="btn primary go" href="{href}">احصل عليه مجاناً</a></div></div></article>'
     )
@@ -167,7 +179,17 @@ def build_course_pages(courses, settings, base_url):
         url = f'{base_url}course/{c["page"]}/'
         title = c["title"]
         desc = (f'احصل على كورس "{title}" على {c["provider"]} مجاناً بخصم 100%.'
-                " الكوبون محدود العدد والمدة، فسارع بالتسجيل.")
+                + (f' {c["subtitle"]}' if c.get("subtitle") else "")
+                + " الكوبون محدود العدد والمدة، فسارع بالتسجيل.")
+        details = [
+            ("المدة", c.get("duration")),
+            ("التقييم", f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,} تقييم)' if c.get("reviews") else "") if c.get("rating") else None),
+            ("الكوبونات المتبقية", f'⏳ {c["uses_left"]}' if c.get("uses_left") else None),
+            ("المدرّب", c.get("instructor")),
+            ("التصنيف", c.get("category")),
+            ("آخر تحديث للكورس", c.get("updated")),
+        ]
+        details_html = "".join(f"<dt>{k}</dt><dd>{esc(str(v))}</dd>" for k, v in details if v)
         related = [r for r in courses if r is not c][:RELATED_COUNT]
         jsonld = {
             "@context": "https://schema.org",
@@ -181,6 +203,11 @@ def build_course_pages(courses, settings, base_url):
         }
         if c.get("image"):
             jsonld["image"] = c["image"]
+        if c.get("instructor"):
+            jsonld["instructor"] = {"@type": "Person", "name": c["instructor"]}
+        if c.get("rating") and c.get("reviews"):
+            jsonld["aggregateRating"] = {"@type": "AggregateRating", "ratingValue": c["rating"],
+                                         "ratingCount": c["reviews"], "bestRating": 5}
         ctx = common_ctx(settings, prefix)
         ctx.update(
             title=esc(f"{title} — مجاناً بكوبون 100% | {settings['site']['name']}"),
@@ -189,12 +216,13 @@ def build_course_pages(courses, settings, base_url):
             og_image=esc(c.get("image") or ""),
             jsonld=json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/"),
             course_title=esc(title),
-            course_desc=esc(desc),
+            course_desc=esc(c.get("subtitle") or desc),
+            details=f'<dl class="details">{details_html}</dl>' if details_html else "",
             provider=esc(c["provider"]),
             image=(f'<img src="{esc(c["image"])}" alt="{esc(title)}" onerror="this.remove()">'
                    if c.get("image") else ""),
-            status=('<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free"
-                    else '<span class="badge unknown">غير مؤكد</span>'),
+            status=('<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free" else "")
+            + (f'<span class="badge">{esc(c["category"])}</span>' if c.get("category") else ""),
             posted=esc(c["posted_at"]),
             posted_date=fmt_date(c["posted_at"]),
             channel=esc(c["channel"]),

@@ -12,7 +12,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import links, telegram, udemy
+from . import links, posts, telegram, udemy
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scraper" / "config.json"
@@ -44,6 +44,20 @@ def title_from_message(text, slug):
     return slug.replace("-", " ").title()
 
 
+def _try_resolve(url, msg, resolve_budget, cache, cfg, log, require_free_words=True):
+    """Look inside an intermediate page for the real Udemy coupon link (within budget)."""
+    if not cfg["resolve_redirects"]:
+        return None
+    if require_free_words and not FREE_WORDS.search(msg["text"]):
+        return None
+    if url not in cache:
+        if resolve_budget[0] <= 0 or time.monotonic() > resolve_budget[1]:
+            return None
+        resolve_budget[0] -= 1
+    target = links.resolve(url, cache, log, timeout=cfg["resolve_timeout"])
+    return links.normalise_udemy(target) if target else None
+
+
 def courses_from_message(msg, resolve_budget, cache, cfg, log):
     """Yield course dicts found in one Telegram message."""
     found = []
@@ -52,43 +66,76 @@ def courses_from_message(msg, resolve_budget, cache, cfg, log):
             continue
         provider = links.provider_for(url)
         if provider == "Udemy":
-            norm = links.normalise_udemy(url)
+            norm = links.normalise_udemy(url)  # None for instructor/profile links
             if norm:
                 found.append(("Udemy", norm))
             continue
         if provider:
             found.append((provider, {"slug": url, "coupon": None, "url": url}))
             continue
+        agg = links.aggregator_slug(url)
+        if agg:
+            # A coupon site (e.g. courson.xyz). Prefer the real Udemy link inside it;
+            # if that page can't be read, still list the course and link to the page.
+            site, slug = agg
+            clean = url.split("?", 1)[0]
+            norm = _try_resolve(clean, msg, resolve_budget, cache, cfg, log, require_free_words=False)
+            found.append(("Udemy", norm or {"slug": slug, "coupon": None, "url": clean, "via": site}))
+            continue
         # Unknown site: maybe a redirect / blog page wrapping a Udemy coupon.
-        if cfg["resolve_redirects"] and FREE_WORDS.search(msg["text"]) and (
-            url in cache or (resolve_budget[0] > 0 and time.monotonic() < resolve_budget[1])
-        ):
-            if url not in cache:
-                resolve_budget[0] -= 1
-            target = links.resolve(url, cache, log)
-            norm = links.normalise_udemy(target) if target else None
-            if norm:
-                found.append(("Udemy", norm))
+        norm = _try_resolve(url, msg, resolve_budget, cache, cfg, log)
+        if norm:
+            found.append(("Udemy", norm))
 
     unique = list({(p, n["url"]): (p, n) for p, n in found}.values())
-    for provider, norm in unique:
+    details = posts.parse_post(msg["text"]) if len(unique) == 1 else {}
+    for i, (provider, norm) in enumerate(unique):
         # A post listing several courses has one caption; use each link's slug instead.
-        title = (title_from_message(msg["text"], norm["slug"]) if len(unique) == 1
-                 else title_from_message("", norm["slug"].rstrip("/").rsplit("/", 1)[-1]))
-        yield {
-            "id": f"{provider.lower()}:{norm['slug']}:{norm['coupon'] or ''}",
+        if details.get("title"):
+            title = details["title"]
+        elif len(unique) == 1:
+            title = title_from_message(msg["text"], norm["slug"])
+        else:
+            title = title_from_message("", norm["slug"].rstrip("/").rsplit("/", 1)[-1])
+        if msg.get("post"):
+            cid = f"tg:{msg['post']}" + (f":{i}" if len(unique) > 1 else "")
+        else:
+            cid = f"manual:{norm['slug']}:{norm['coupon'] or ''}"
+        course = {
+            "id": cid,
             "provider": provider,
             "slug": norm["slug"],
+            "page_slug": norm["slug"],
             "coupon": norm["coupon"],
             "url": norm["url"],
+            "via": norm.get("via"),
             "title": title,
             "image": msg.get("photo"),
-            "description": msg["text"][:400],
             "source": f"https://t.me/{msg['post']}" if msg.get("post") else None,
             "channel": msg["channel"],
             "posted_at": msg["date"],
             "status": "unknown",
         }
+        course.update({k: v for k, v in details.items() if k != "title"})
+        yield {k: v for k, v in course.items() if v is not None}
+
+
+def merge_with_previous(course, old):
+    """Keep what earlier runs learned (resolved link, Udemy check, stable page URL)."""
+    course["posted_at"] = min(old["posted_at"], course["posted_at"])
+    course["page_slug"] = old.get("page_slug") or old["slug"]
+    if not course.get("coupon") and old.get("coupon"):
+        for k in ("slug", "coupon", "url"):
+            course[k] = old[k]
+        course.pop("via", None)
+    if course.get("coupon") == old.get("coupon"):
+        for k in ("status", "checked_at"):
+            if old.get(k):
+                course[k] = old[k]
+    for k in ("title", "image"):
+        if old.get(k) and old.get("checked_at"):  # title/image confirmed by Udemy
+            course[k] = old[k]
+    return course
 
 
 def enrich_with_udemy(courses, cfg, cache, log):
@@ -99,7 +146,7 @@ def enrich_with_udemy(courses, cfg, cache, log):
     deadline = time.monotonic() + cfg["max_validation_seconds"]
     failures_in_a_row = 0
     for c in courses:
-        if c["provider"] != "Udemy" or budget <= 0 or time.monotonic() > deadline:
+        if c["provider"] != "Udemy" or not c.get("coupon") or budget <= 0 or time.monotonic() > deadline:
             continue
         # Coupons run out, so re-check a "free" course every few hours.
         if c.get("checked_at") and datetime.fromisoformat(c["checked_at"]) > recheck_before:
@@ -128,6 +175,40 @@ def enrich_with_udemy(courses, cfg, cache, log):
         log(f"  {c['status']:8} {c['slug']}")
 
 
+def probe_sites(debug):
+    """Debug only: try one link per coupon site and record how it answers."""
+    import urllib.request
+    report = {}
+    for msgs in list(debug.values()):
+        for m in msgs:
+            for url in m.get("links") or []:
+                agg = links.aggregator_slug(url)
+                if not agg or agg[0] in report:
+                    continue
+                attempts = []
+                for name, headers in (("browser", None), ("plain", {"User-Agent": "curl/8.5.0"})):
+                    t0 = time.monotonic()
+                    try:
+                        if headers is None:
+                            final, body = __import__("scraper.http", fromlist=["fetch"]).fetch(url, retries=0, timeout=40)
+                            status = 200
+                        else:
+                            req = urllib.request.Request(url, headers=headers)
+                            with urllib.request.urlopen(req, timeout=40) as r:
+                                final, status = r.geturl(), r.status
+                                body = r.read().decode("utf-8", "replace")
+                        found = links.UDEMY_COUPON_RE.findall(body.replace("&amp;", "&"))
+                        attempts.append({"mode": name, "status": status, "final": final,
+                                         "seconds": round(time.monotonic() - t0, 1),
+                                         "udemy_links": found[:3], "length": len(body),
+                                         "snippet": re.sub(r"\s+", " ", body)[:1500]})
+                    except Exception as e:  # noqa: BLE001
+                        attempts.append({"mode": name, "error": repr(e)[:300],
+                                         "seconds": round(time.monotonic() - t0, 1)})
+                report[agg[0]] = {"url": url, "attempts": attempts}
+    return report
+
+
 def run(log=print):
     cfg = load_json(CONFIG_PATH, {})
     cfg.setdefault("telegram_channels", [])
@@ -138,6 +219,7 @@ def run(log=print):
     cfg.setdefault("validate_udemy", False)
     cfg.setdefault("max_validations", 80)
     cfg.setdefault("max_redirect_seconds", 180)
+    cfg.setdefault("resolve_timeout", 25)
     cfg.setdefault("max_validation_seconds", 300)
 
     cache = load_json(CACHE_PATH, {})
@@ -157,11 +239,7 @@ def run(log=print):
     def add(course):
         old = fresh.get(course["id"]) or previous.get(course["id"])
         if old:
-            # Keep earliest post time and anything already checked.
-            course["posted_at"] = min(old["posted_at"], course["posted_at"])
-            for k in ("status", "checked_at", "title", "image"):
-                if old.get(k) and (k != "image" or not course.get("image")):
-                    course[k] = old[k]
+            course = merge_with_previous(course, old)
         fresh[course["id"]] = course
 
     debug = {}
@@ -183,6 +261,7 @@ def run(log=print):
         log(f"- {channel}: {len(messages)} messages, {found_in_channel} course links")
 
     if debug:
+        debug["_probe"] = probe_sites(debug)
         (ROOT / "data" / "debug-messages.json").write_text(
             json.dumps(debug, ensure_ascii=False, indent=1), encoding="utf-8")
 

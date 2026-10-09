@@ -5,7 +5,7 @@ from scraper import links, telegram
 from scraper.scrape import courses_from_message, title_from_message
 
 FIXTURE = Path(__file__).parent / "fixtures" / "channel.html"
-CFG = {"resolve_redirects": False}
+CFG = {"resolve_redirects": False, "resolve_timeout": 1}
 
 
 class TelegramParserTest(unittest.TestCase):
@@ -36,6 +36,43 @@ class TelegramParserTest(unittest.TestCase):
         self.assertEqual(found[0]["url"],
                          "https://www.udemy.com/course/complete-python-bootcamp/?couponCode=OCT2026FREE")
         self.assertEqual(found[0]["source"], "https://t.me/FreeCoursesDemo/1201")
+
+
+REAL_POST = {
+    "post": "Udemy4U/87969", "channel": "Udemy4U", "date": "2026-10-07T13:36:29+00:00", "photo": "https://cdn/p.jpg",
+    "text": ("Mastering Social Media Management and Marketing | Udemy\n"
+             "Equip Yourself with the Skills, Strategies and Tools to become an Effective Social Media Manager\n\n"
+             "1.5 hours • 24 lectures • 7 quizzes.\n\n⏳ 39 coupon uses left ⚠️\n📶 Rating: 4.7 ⭐️ (248 reviews)\n"
+             "📅 Last updated: 09/26\n🎓 Instructor: Growth School\n\n#social_media_marketing"),
+    "links": ["https://t.me/Udemy4U", "https://t.me/Udemy4U/87969", "https://www.udemy.com/user/hamzat-baliqis-2/",
+              "?q=%23social_media_marketing",
+              "https://courson.xyz/coupon/mastering-social-media-management-and-marketing?utm_source=social&utm_medium=telegram"],
+}
+
+
+class CoursonPostTest(unittest.TestCase):
+    def test_lists_course_even_when_coupon_site_is_unreachable(self):
+        cfg = {"resolve_redirects": False, "resolve_timeout": 1}
+        [c] = list(courses_from_message(REAL_POST, [0, 0], {}, cfg, print))
+        self.assertEqual(c["title"], "Mastering Social Media Management and Marketing")
+        self.assertEqual(c["url"], "https://courson.xyz/coupon/mastering-social-media-management-and-marketing")
+        self.assertEqual(c["via"], "courson.xyz")
+        self.assertEqual(c["id"], "tg:Udemy4U/87969")
+        self.assertEqual(c["uses_left"], 39)
+        self.assertEqual(c["rating"], 4.7)
+        self.assertEqual(c["reviews"], 248)
+        self.assertEqual(c["instructor"], "Growth School")
+        self.assertEqual(c["category"], "Social Media Marketing")
+        self.assertEqual(c["duration"], "1.5 hours • 24 lectures • 7 quizzes")
+        self.assertTrue(c["subtitle"].startswith("Equip Yourself"))
+
+    def test_uses_resolved_udemy_link_from_cache(self):
+        cfg = {"resolve_redirects": True, "resolve_timeout": 1}
+        cache = {"https://courson.xyz/coupon/mastering-social-media-management-and-marketing":
+                 "https://www.udemy.com/course/social-media-mm/?couponCode=OCT39"}
+        [c] = list(courses_from_message(REAL_POST, [0, 0], cache, cfg, print))
+        self.assertEqual((c["slug"], c["coupon"]), ("social-media-mm", "OCT39"))
+        self.assertNotIn("via", c)
 
 
 class LinksTest(unittest.TestCase):
