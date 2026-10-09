@@ -133,11 +133,13 @@ def run(log=print):
 
     fresh = {}
     for channel in cfg["telegram_channels"]:
-        log(f"- {channel}")
-        for msg in telegram.fetch_channel(channel, cfg["pages_per_channel"], log):
+        messages = telegram.fetch_channel(channel, cfg["pages_per_channel"], log)
+        found_in_channel = 0
+        for msg in messages:
             if not msg["date"] or datetime.fromisoformat(msg["date"]) < cutoff:
                 continue
             for course in courses_from_message(msg, resolve_budget, cache, cfg, log):
+                found_in_channel += 1
                 old = fresh.get(course["id"]) or previous.get(course["id"])
                 if old:
                     # Keep earliest post time and anything already checked.
@@ -146,6 +148,7 @@ def run(log=print):
                         if old.get(k) and (k != "image" or not course.get("image")):
                             course[k] = old[k]
                 fresh[course["id"]] = course
+        log(f"- {channel}: {len(messages)} messages, {found_in_channel} course links")
 
     # Keep still-recent courses from earlier runs that scrolled out of the channel pages.
     for cid, old in previous.items():
