@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-09T06:10:32+00:00",
+ "updated_at": "2026-10-09T06:12:27+00:00",
  "count": 395,
  "sources": {
   "Udemy4U": {
@@ -19,6 +19,81 @@
   }
  },
  "courses": [
+  {
+   "id": "rd:76502",
+   "provider": "Udemy",
+   "slug": "curso-completo-de-flutter-y-dart-desarrollo-de-apps-mobile",
+   "page_slug": "curso-completo-de-flutter-y-dart-desarrollo-de-apps-mobile",
+   "coupon": "GRATIS100OCT2026",
+   "url": "https://www.udemy.com/course/curso-completo-de-flutter-y-dart-desarrollo-de-apps-mobile/?couponCode=GRATIS100OCT2026",
+   "title": "Curso completo de Flutter y Dart. Desarrollo de Apps mobile",
+   "image": "https://img-c.udemycdn.com/course/750x422/5924340_7fa5.jpg",
+   "channel": "real.discount",
+   "posted_at": "2026-10-09T06:10:48+00:00",
+   "status": "unknown",
+   "category": "Mobile Development",
+   "language": "Spanish",
+   "lectures": 21,
+   "rating": 4.5,
+   "price": 69.99,
+   "checked_at": "2026-10-09T06:12:27+00:00"
+  },
+  {
+   "id": "rd:76257",
+   "provider": "Udemy",
+   "slug": "crea-tu-primer-video-juego-con-unreal-engine-5-de-0-a-jugar",
+   "page_slug": "crea-tu-primer-video-juego-con-unreal-engine-5-de-0-a-jugar",
+   "coupon": "GRATIS100OCT2026",
+   "url": "https://www.udemy.com/course/crea-tu-primer-video-juego-con-unreal-engine-5-de-0-a-jugar/?couponCode=GRATIS100OCT2026",
+   "title": "Crea tu Primer Videojuego con Unreal Engine 5. De 0 a Jugar",
+   "image": "https://img-c.udemycdn.com/course/750x422/6247605_5a26.jpg",
+   "channel": "real.discount",
+   "posted_at": "2026-10-09T06:10:41+00:00",
+   "status": "unknown",
+   "category": "Game Development",
+   "language": "Spanish",
+   "lectures": 28.5,
+   "rating": 4.8,
+   "price": 19.99,
+   "checked_at": "2026-10-09T06:12:27+00:00"
+  },
+  {
+   "id": "rd:69563",
+   "provider": "Udemy",
+   "slug": "deepseek-la-ia-como-chatgpt-pero-open-source-gratis",
+   "page_slug": "deepseek-la-ia-como-chatgpt-pero-open-source-gratis",
+   "coupon": "GRATIS100OCT2026",
+   "url": "https://www.udemy.com/course/deepseek-la-ia-como-chatgpt-pero-open-source-gratis/?couponCode=GRATIS100OCT2026",
+   "title": "DeepSeek la IA  como ChatGPT pero Open Source (es Gratis)",
+   "image": "https://img-c.udemycdn.com/course/750x422/6422811_3612_4.jpg",
+   "channel": "real.discount",
+   "posted_at": "2026-10-09T06:10:36+00:00",
+   "status": "unknown",
+   "category": "Other IT & Software",
+   "language": "Spanish",
+   "lectures": 3.5,
+   "price": 84.99,
+   "checked_at": "2026-10-09T06:12:27+00:00"
+  },
+  {
+   "id": "rd:75097",
+   "provider": "Udemy",
+   "slug": "gpt5-novedades-usos-y-secretos",
+   "page_slug": "gpt5-novedades-usos-y-secretos",
+   "coupon": "GRATIS100OCT2026",
+   "url": "https://www.udemy.com/course/gpt5-novedades-usos-y-secretos/?couponCode=GRATIS100OCT2026",
+   "title": "Domina ChatGPT-5: Novedades, Usos y Secretos",
+   "image": "https://img-c.udemycdn.com/course/750x422/6765429_1c55.jpg",
+   "channel": "real.discount",
+   "posted_at": "2026-10-09T06:10:30+00:00",
+   "status": "unknown",
+   "category": "Other Business",
+   "language": "Spanish",
+   "lectures": 3.5,
+   "rating": 4.6,
+   "price": 44.99,
+   "checked_at": "2026-10-09T06:12:27+00:00"
+  },
   {
    "id": "rd:73247",
    "provider": "Udemy",
@@ -1376,7 +1451,7 @@
    "page_slug": "love-after-baby",
    "url": "https://www.udemy.com/course/love-after-baby/?couponCode=06B145799B6B480D3B9F",
    "title": "Love After Baby: Reconnecting as a Couple Post-Parenthood",
-   "image": "https://img-c.udemycdn.com/course/750x422/6675457_e6eb_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/LSR-oLiYAniOI6nb0J85AWP1rtScRSWHRJDbvcudb3Ngh13DeBVR41-K6k48yWYhtcxdsfPaFaTGgrj0m05gTnp8zWZFA_RGf2jDNFNu5BRFdAT2HjSK8lnqV5aEoxDiw4Tyx3shDfuzdBRkwM_d-katpdX26NcRK6BCczoLvPUkG0iG0f-kTF8YFOO426bA1jF45pFMP7ce1c8iFnyCf2ZiG7ZQrQQ6r--ue_kfZGaBGe0y0C1lnXhs7SKbcvHpmjzM7IL1JJ0EQ2NWTK60AWdlb9-lwf3FmQoOlMUSJ8BAl-7iNAsemzGoX3jJQ61pe94IFAq2OT2Fn8z6M2Z2uw.jpg",
    "source": "https://t.me/udemy_learning_courses/47009",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-08T22:44:13+00:00",
@@ -1389,10 +1464,7 @@
    "instructor": "Md. Aliful Islam",
    "updated": "08/25",
    "category": "Parenting And Relationships",
-   "coupon": "06B145799B6B480D3B9F",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 2
+   "coupon": "06B145799B6B480D3B9F"
   },
   {
    "id": "tg:Udemy4U/88008",
@@ -1401,7 +1473,7 @@
    "page_slug": "content-marketing-copywriting-complete-practice-tests",
    "url": "https://www.udemy.com/course/content-marketing-copywriting-complete-practice-tests/?couponCode=1AAF28FA0B0061C1BEE4",
    "title": "Content Marketing & Copywriting: Complete Practice Tests",
-   "image": "https://img-c.udemycdn.com/course/750x422/7188035_1e08.jpg",
+   "image": "https://cdn4.telesco.pe/file/OmhrMeMhgCAcqsmXFz2jehMsnHdMkv0J6cMEsQLjKfMftjg8XuK37oUYPP0qIBagWIQfku6Sd4oaTNyOxyPfJVX21FvpePkplJLaoyhoFt2Rsjnf8U3cM6IHM2bQF-anyJoJ3oEY7MTO_QY0gmiWgXMJWxzQPjhLSA8gz50b_v2-EANAga5MRInGQoIqzzG4Ln1PknC5-6NONKsrFtSGqyw_i8rHas0hMIYel4sXSEpgkounhpWvB4BjaJfiE3HD9txmJGOhd7KuTh7g8aXpAU7_JabGJghHWUYz9BCatiA5U49zGOHUFMkYdXUCoMQzObNR-MZhMF5AXk9rRYpY5g.jpg",
    "source": "https://t.me/Udemy4U/88008",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T21:36:36+00:00",
@@ -1414,9 +1486,7 @@
    "instructor": "Himanshu Kaushik",
    "updated": "05/26",
    "category": "Content Marketing",
-   "coupon": "1AAF28FA0B0061C1BEE4",
-   "price": 29.99,
-   "language": "English"
+   "coupon": "1AAF28FA0B0061C1BEE4"
   },
   {
    "id": "rd:85358",
@@ -1441,7 +1511,7 @@
    "page_slug": "pgdincapitalmarket",
    "url": "https://www.udemy.com/course/pgdincapitalmarket/?couponCode=528B3AAC5D79707E07F1",
    "title": "Postgraduate Diploma in Capital Market (PGDCM)",
-   "image": "https://img-c.udemycdn.com/course/750x422/6647621_9e8b_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/SKl_e2DlOnDgIv9rBrtcICFRcNRtTgpnx8Sxt4Xrkk6xrLz9-_p5bBW2Z5MNunDYDbjqMI8L2NtFVZzfKEtUWEBMIKw-njSdX3zNoW2iFcJoaHsdqOPk7i6-kfrTcvFIkPnhagPBGGIezuIs2DXpxuonemKZ8QGgLJIXjUe_MTNQ2EC8EgpaG-txEZfSVsZNW_YbdyyZ7cABrtv5WtGKo1Rawdlqkwc3W7W7xEJk7mToRrnovMpVqQeqSA1X7qDD_SmQO9pF2egoavHjob--Jkksz6ZF9O4KSMLPRmgNiX1RcQhvBKw5tg5l2XvIHbLJZwfZgwEAuQsDefYFhy9Fug.jpg",
    "source": "https://t.me/udemy_learning_courses/47008",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-08T21:28:26+00:00",
@@ -1454,10 +1524,7 @@
    "instructor": "Md. Aliful Islam",
    "updated": "06/25",
    "category": "Investing And Trading",
-   "coupon": "528B3AAC5D79707E07F1",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 1.5
+   "coupon": "528B3AAC5D79707E07F1"
   },
   {
    "id": "rd:68835",
@@ -1483,7 +1550,7 @@
    "page_slug": "game-development-design-complete-practice-tests",
    "url": "https://www.udemy.com/course/game-development-design-complete-practice-tests/?couponCode=54D5782D99C936E74714",
    "title": "Game Development & Design: Complete Practice Tests",
-   "image": "https://img-c.udemycdn.com/course/750x422/7187545_975b.jpg",
+   "image": "https://cdn4.telesco.pe/file/oOUfI4UMSwANdiOrOY3M06-yiSECkmPavox4Rf-aCc3f5pnXaugYuUMH51LrrznmufQpdG5xgQxJV3Jf9o36pXw7QtXaAZdSLqOYTzVeLmgP119yKjJNwK2igWtjn69pMhiN5EevVcWyZPthMe0-6bmFh3f3LAI3I4oRd8xWK931FQKoZUAj0fya-HJkjk9uaDkx1PVvWlvOZzTTtJ-rdW-IWSwha1GrkOem1GztFAzlHJdufqd3DRVQhObeo3LIPx6GZ3YfcpGSykT1AMEbj_kN_xorc8J_BEEmeLf-7o_NkteMK91RmJh-5a4qop0UOhMEPXp9hfpWCDomj7e9Fw.jpg",
    "source": "https://t.me/Udemy4U/88007",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T20:48:48+00:00",
@@ -1496,9 +1563,7 @@
    "instructor": "Himanshu Kaushik",
    "updated": "05/26",
    "category": "Game Development",
-   "coupon": "54D5782D99C936E74714",
-   "price": 29.99,
-   "language": "English"
+   "coupon": "54D5782D99C936E74714"
   },
   {
    "id": "tg:udemy_learning_courses/47007",
@@ -1529,7 +1594,7 @@
    "page_slug": "the-future-of-work-job",
    "url": "https://www.udemy.com/course/the-future-of-work-job/?couponCode=860E1D4ADFD47819B5B1",
    "title": "The Future of Work: Job Trends Toward 2030",
-   "image": "https://img-c.udemycdn.com/course/750x422/7051669_9068_6.jpg",
+   "image": "https://cdn4.telesco.pe/file/G_1I9lcc80aPdJ8Hfya5bd17bec4-MjasTPh4VVG0XdgLbU9eAQF4pmfuj6O05hTkiPg4RrFlC0nNYOI50kinh-9R88fliQ0fu1HnZsYbTW1BHEbPELRE-PjubaWUhmZoZmB9j0ofuXnbSnYu1UCWOEGTeGSlUOH7wBj0zhIgWwyjR28PMo61piwOiPZrJNOUHQbw6H1ZV_jMNW87FD11iyQPykpc50gQsPoSuEjkrZ9Btf6xhHwbF0dO_ND4XM_FsHgpgFvkhsDXzHNhWVolccEcTsSU_AXZ1LtCLLnCSlt7U35Pn9Sb92guztIX32t7SD3Y8T0V2XezIp96FqLSQ.jpg",
    "source": "https://t.me/Udemy4U/88006",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T20:00:58+00:00",
@@ -1542,10 +1607,7 @@
    "instructor": "Green Courses",
    "updated": "07/26",
    "category": "Other Office Productivity",
-   "coupon": "860E1D4ADFD47819B5B1",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 1
+   "coupon": "860E1D4ADFD47819B5B1"
   },
   {
    "id": "tg:Udemy4U/88005",
@@ -1576,7 +1638,7 @@
    "page_slug": "how-to-transform-your-life-practical-ways",
    "url": "https://www.udemy.com/course/how-to-transform-your-life-practical-ways/?couponCode=8THOCT",
    "title": "How to Transform Your Life - practical ways",
-   "image": "https://img-c.udemycdn.com/course/750x422/4912620_d57d.jpg",
+   "image": "https://cdn4.telesco.pe/file/H79IQD6Ja5pkSTziXq9-H_8PQ6YCN1loHoYsgAbe35qaGGbJKV2DVr1tfHKKr8nW0APjGtYme6LTPumYPZ0sfVmcqhtiT6TpE16fLtqtaSIOSvsDHqnqh09epkKs_jpdSai3a26UVJwbN0MKYnw8AHEa0hBpZLp2UM5LwVJBIhUtEJozwgAeZMF0xL-dXO5HvNh-Y65nzDCjpYI9cep9ZLVOjgCU_OejoTmLlKefUp_9TrKrQWqMA8Bf5Bi9LV6I_zoNBvteO6Zb7jqgMbZTyBOwn2ESU9_HcOFZYLXbg_8gmP6GDMg0vIUiVqLoJAWn9GbU6ABSxxyn1kfQ8OZH0w.jpg",
    "source": "https://t.me/udemy_learning_courses/47006",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-08T18:56:52+00:00",
@@ -1589,10 +1651,7 @@
    "instructor": "Baba Oyewole",
    "updated": "03/23",
    "category": "Personal Transformation",
-   "coupon": "8THOCT",
-   "price": 24.99,
-   "language": "English",
-   "lectures": 3
+   "coupon": "8THOCT"
   },
   {
    "id": "rd:85357",
@@ -1703,7 +1762,7 @@
    "page_slug": "c-complete-training-course-for-beginners-2022",
    "url": "https://www.udemy.com/course/c-complete-training-course-for-beginners-2022/?couponCode=91CFDC8D2FFBEAC029F3",
    "title": "C++ Complete Training Course for C++ Beginners All In One",
-   "image": "https://img-c.udemycdn.com/course/750x422/4975194_1cdd.jpg",
+   "image": "https://cdn4.telesco.pe/file/HYim83CUY5OFJsydN4xqkhwResjXgLd-vJlHuJnzcymCyfi6JtZX5J4u5gRFbKQSKYN_rJjDy-JCM92xSKN1L_kgO3ScUC-BGqfhdFiffCMyZpSmvYD3dZosA7p7X1kglJgUHCNL-INm1Fy4X37hep4DKq8pR0CeHORQcgBmt7sslPkHgmj6bdqSK4Q17kdkCW3ZUzJy0w6MPY5GMKPLOQujk8lsrl1LoPOO7hcEQUpOO4XDMFjPSDxmvAEwwTkavWmyEsGCYzixccnsZ_n-urnHXuWmXuckVI7UtHZz8z0fKKVyOnHW_tGdaCTrzLvSf5rfdDhL-U0uQUarzF8mVg.jpg",
    "source": "https://t.me/Udemy4U/88004",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T18:25:19+00:00",
@@ -1716,10 +1775,7 @@
    "instructor": "Crunch Coding Institute",
    "updated": "07/24",
    "category": "Programming Languages",
-   "coupon": "91CFDC8D2FFBEAC029F3",
-   "price": 84.99,
-   "language": "English",
-   "lectures": 1.5
+   "coupon": "91CFDC8D2FFBEAC029F3"
   },
   {
    "id": "rd:75168",
@@ -2149,7 +2205,7 @@
    "page_slug": "sqlmap-from-scratch-for-ethical-hackers",
    "url": "https://www.udemy.com/course/sqlmap-from-scratch-for-ethical-hackers/?couponCode=4EDE5CD48C83057AE7D5",
    "title": "SQLMap From Scratch for Ethical Hackers",
-   "image": "https://img-c.udemycdn.com/course/750x422/6163031_3fcc_3.jpg",
+   "image": "https://cdn4.telesco.pe/file/f3LvW6-HVaEZWVNIc0EtNPAa7ycJELG6245wFEYgXyQDvzz2UpWjuhg2KTnLugYcztw_Buypfm4--82HWwxyymTxVOir-ydkd1kCJwROTOu5-cZHCEvzioOtjhNJfF5XzUpVUvIL-9-nqLqtJ2_K9Tpf9ukKOLfJgRnsuraBU9GGfw7iC7NqI7ImSDebH59BfQBZLBQwD4dZmVFPh-Aht2VCcaMgZ_FK2MfJshXtP7IpWMnZixHG4_1ix173aainea-h7s1z87T6zuvDexUXtAwxUFio1VtyHLXLx9IGTD-C26FD0LK3gFm7GXsiANPDNABAlvADQWoQ8PSWSqj_lw.jpg",
    "source": "https://t.me/Udemy4U/88002",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T16:49:38+00:00",
@@ -2162,10 +2218,7 @@
    "instructor": "Cyber Twinkle +1",
    "updated": "09/24",
    "category": "Network And Security",
-   "coupon": "4EDE5CD48C83057AE7D5",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 1
+   "coupon": "4EDE5CD48C83057AE7D5"
   },
   {
    "id": "tg:udemy_learning_courses/47004",
@@ -2326,7 +2379,7 @@
    "page_slug": "css-bootstrap-and-javascript-and-python-stack-course",
    "url": "https://www.udemy.com/course/css-bootstrap-and-javascript-and-python-stack-course/?couponCode=D908308D824144961FDD",
    "title": "CSS, Bootstrap And JavaScript And Python Stack Course",
-   "image": "https://img-c.udemycdn.com/course/750x422/4447554_32c0_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/KNJNyxG248IiMVBJfme2hFIwxlyLgY713nBuZmB6nmCaFbe0fDh29ALZ6OBzqW836kem1hYyEj1hEjL-sgCoPjq_hXu83XaolA0R_PaArWu5dIDQtCKFvI9-kyOBy6u3ZMpVZ2PQjpRY8ovHITWPBPFHy6zjkjBhAQuT61Sz77lfAUWtlh9KcEV0gVzYlgO7Q7Kacq_lsd520G3vAvIFCdexelef3lFWwtXQC8r4kzplZkZyyfnT75NZkBLPDRuY5B6cvbkSjNgvFRNc-YzcC5JSpA9Y-dMfn1lpsYedTyRvWxC8zPw3nuCsyGq91jyAhbMifjvOImKXbc5xkfKBgA.jpg",
    "source": "https://t.me/Udemy4U/88000",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T15:13:53+00:00",
@@ -2339,10 +2392,7 @@
    "instructor": "PROPER DOT INSTITUTE",
    "updated": "12/21",
    "category": "It Certifications",
-   "coupon": "D908308D824144961FDD",
-   "price": 84.99,
-   "language": "English",
-   "lectures": 7.5
+   "coupon": "D908308D824144961FDD"
   },
   {
    "id": "tg:udemy_learning_courses/47003",
@@ -2608,7 +2658,7 @@
    "page_slug": "javascript-tests-best-practices",
    "url": "https://www.udemy.com/course/javascript-tests-best-practices/?couponCode=0C16029BDBF32A2485D5",
    "title": "JavaScript Exams:Master JavaScript Concepts & Best Practices",
-   "image": "https://img-c.udemycdn.com/course/750x422/5607440_d348_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/CsCjCpjoU5vt50vc2hQgWomkj3y78lcBkqdn6YPlDZX9dMw7kmRMcV0WuH8GxtyQ3IeKCBK-6bz88sAfZ8HmurC3-Sj4F3KsP0v09Z0L7mgGajmpBE5J_NlnoBszm8DgdQnelP_9GhHdKCqSW2BoXMVMoEARJHLji4FA_SmN2DTgacR8iWjo3V5rbFb3UVAg4AyWsIQVWCNgqbkxoDVmiWOnHwK1cNNyLSdYh9FJtAeI7Borw1R_MCeXYepMP8jq9b5oAGXUQPRaZu1cRxUkaQ2Pvm2Z13v-VT6_IfBOqoS7XJADroCZP8f8jxtNSB8zh03mPSQ3h36S66zQfSe-ow.jpg",
    "source": "https://t.me/Udemy4U/87998",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T13:38:12+00:00",
@@ -2621,10 +2671,7 @@
    "instructor": "Temotec Learning Academy",
    "updated": "11/24",
    "category": "Web Development",
-   "coupon": "0C16029BDBF32A2485D5",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 1
+   "coupon": "0C16029BDBF32A2485D5"
   },
   {
    "id": "rd:23979",
@@ -2681,12 +2728,11 @@
   {
    "id": "tg:Udemy4U/87997",
    "provider": "Udemy",
-   "slug": "sc-900-practice-exams-security-compliance-identity",
+   "slug": "isaca-certified-information-security-manager-practice-exams",
    "page_slug": "sc-900-practice-exams-security-compliance-identity",
-   "url": "https://courson.xyz/coupon/sc-900-practice-exams-security-compliance-identity",
-   "via": "courson.xyz",
+   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
    "title": "Highest_Rated",
-   "image": "https://cdn4.telesco.pe/file/Tll4DfMQ4AnPDjFwI5nNuj-4AcsaivOd4zFIhfwXh4j_4aR_7TBc_sDnT5TORyEvNO-VuhTPd6UWWj3cngV86pfte9pWj2lRcZ5wocTacMByueHuLU1j2uFozeK4gjtSxleB-Eiv29l3aKaFGYUKOYSgol0ksBXU3JIFV6SVdTtwP6hsAsS1s_ws-HhXFkeUOpc-7VbRX61ee3-d_z2_XkCzn9Z4mIcBnYpkN609hYkrUoSZu1A4AnsjokK7RVA27P6lOmlCMK18b_vo3ee3HEww_YzAIjwT0SjWLeMcUdQ56FziZBsD1j2CUmtXCk47_qSWHVr6FSI-ViOzi8PRkQ.jpg",
+   "image": "https://cdn4.telesco.pe/file/VzyubakpQjqwsb5GvnY_EeryKCoMiInn0jWmiqJ4RDt1NgN8ANFtbnH66gTtK_DvfeLXyFom2kyHK6EgGbFyygDm01hOHVaYcmEctGMtnMuZjn584M-LlsA-G45fRmVUphx4Xl7WMPyR4PrfeggTwTboRfloVWmwW3hRL0THrwQOzPUx9-hU1GduK2NCwfm1Rn1RiRIKq3Rdea0yuybe30NMCuu1e3y-Tao9YhbBUb8O07HRoVafCiyZVPGVkty9QtKztaAeqZlBrNRO1q6OBnCVd6ucZVqaqoz4ZT76KU4QxHquxDTZ60d2Ow3yp_2_YUaHGUvUhcHXRa86ZhsQew.jpg",
    "source": "https://t.me/Udemy4U/87997",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T12:50:21+00:00",
@@ -2697,7 +2743,8 @@
    "reviews": 47,
    "instructor": "Nex Arc",
    "updated": "07/26",
-   "category": "Highest Rated"
+   "category": "Highest Rated",
+   "coupon": "4ED51A0AB16342E36F5F"
   },
   {
    "id": "tg:udemy_learning_courses/47001",
@@ -3687,7 +3734,7 @@
    "page_slug": "hands-on-react-js-from-beginner-to-expert",
    "url": "https://www.udemy.com/course/hands-on-react-js-from-beginner-to-expert/?couponCode=28F6B7F1E0435F73F1EF",
    "title": "Hands On React JS From Beginner to Expert",
-   "image": "https://img-c.udemycdn.com/course/750x422/6190043_1a7e_3.jpg",
+   "image": "https://cdn4.telesco.pe/file/H57Yv83kDe8XDV1CwXQDfrUs6rzLC2Z5h32Akp-qhYmsKH9yHK3mu1b5qkG6XLlg2YEInsIZgqDRycP0rBP5WiC6yQRPiRxDXRC3XWt_xyji0lpHu_5Sfvpf82GWgm-Qetyg2LW9rH2Z1CKVfdyPsFP3-erfbqkMprjp_ASfyQC1Fe2uvdv_4K8BdV-P_vLhMUwnymWtGnd-pcpjJco_p6Y1FX0fY2xTC-gwC6xJtOx7i7DxWevsSAf4OgrYcL8fiORlIVV0RXLkl4lS_p1lDhnuPmFjFG7OI32n12sKG_XjgKPGrmxNi7ryNsyE8AZpuKElZhQ0xuYXXahMLB9ooQ.jpg",
    "source": "https://t.me/Udemy4U/87992",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T08:51:03+00:00",
@@ -3700,10 +3747,7 @@
    "instructor": "Learnify IT",
    "updated": "04/26",
    "category": "Programming Languages",
-   "coupon": "28F6B7F1E0435F73F1EF",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 4.5
+   "coupon": "28F6B7F1E0435F73F1EF"
   },
   {
    "id": "tg:udemy_learning_courses/46998",
@@ -3749,7 +3793,7 @@
    "page_slug": "php-with-mysql-2023-build-7-php-and-mysql-projects",
    "url": "https://www.udemy.com/course/php-with-mysql-2023-build-7-php-and-mysql-projects/?couponCode=PHP7PROJECTS78",
    "title": "PHP with MySQL: Build 7 PHP and MySQL Projects",
-   "image": "https://img-c.udemycdn.com/course/750x422/5010434_6d6a_3.jpg",
+   "image": "https://cdn4.telesco.pe/file/Wa8D0cFm7BzYqZKhssnyyjjKxyomgqtAqfsmg4C3pmUZkn-pfZHSbHM3bL1hLwBG_P-DxA4u-Lzfdka2CGCaIgyGaeVcbd30rxjdzMoDYcll4iWaPde6NNlQFxZ4lUH70JbqGg52-pRWjVqn_4BJHHQqDclLZfv-BJTVowd59oUbVNLDps2hIqamtBy6rJd6tk-Wf9sAEQfDM3GlFuUABRUGbHNBYMrW8W0wzm51nBBFM-F3q7-01MKif2Ip2jiRKJWbzJI5W1qx4Angm2iQ6tbwE8qbx2ACx7WrkyUZ1yD8_CWz2C_pQ6VrUA9EpZMUo26VmRKOESsxnZG9--UTBA.jpg",
    "source": "https://t.me/Udemy4U/87991",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T08:03:11+00:00",
@@ -3762,10 +3806,7 @@
    "instructor": "Web Coding",
    "updated": "06/24",
    "category": "Mysql",
-   "coupon": "PHP7PROJECTS78",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 3
+   "coupon": "PHP7PROJECTS78"
   },
   {
    "id": "rd:84975",
@@ -3880,7 +3921,7 @@
    "page_slug": "logo-design-essentials-photoshop-illustrator",
    "url": "https://www.udemy.com/course/logo-design-essentials-photoshop-illustrator/?couponCode=B5C6AAF5B632DB0AE3B1",
    "title": "Logo Design Essentials: Photoshop & Illustrator",
-   "image": "https://img-c.udemycdn.com/course/750x422/6078811_1a06_5.jpg",
+   "image": "https://cdn4.telesco.pe/file/iuxDTm6BxxRcXEHytaZDZheUx85_xTCTy_GjdLaL_HZ5W1YdFyX4k-bHk-G2Dzx-HO7QRvK3WG2PHi3-bxK_jYG7M1aLsmolMiSA1SOQmsHbhEXDyF29fgZbDo_dNqVzWPPQNIhgRYRz1ofERWgtfKjr2n4lKqCWmaigjmCjwMZsBD0TrCnHmlO84-uCUlfvU2PcHXcwQvtQHoAYCr_fDkQyCbvegjb1Ex3oNUHwvtwNLup66eYpOtfY7cyiu-DKgsQuAL2RI2EXFwHez3yAZEQYqPfp0UbPoYUVVkdff7vvD3RMqO03fhDeRCAl7EPsnhW6MHd7kyIExCayHKmgKA.jpg",
    "source": "https://t.me/Udemy4U/87990",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T07:15:20+00:00",
@@ -3893,10 +3934,7 @@
    "instructor": "Sayman Creative Institute",
    "updated": "03/26",
    "category": "Graphic Design And Illustration",
-   "coupon": "B5C6AAF5B632DB0AE3B1",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 3
+   "coupon": "B5C6AAF5B632DB0AE3B1"
   },
   {
    "id": "rd:85345",
@@ -4074,7 +4112,7 @@
    "page_slug": "essential-adobe-lightroom-course-for-photo-editing",
    "url": "https://www.udemy.com/course/essential-adobe-lightroom-course-for-photo-editing/?couponCode=15879E71146D9442D071",
    "title": "Essential Adobe Lightroom Course for Photo Editing",
-   "image": "https://img-c.udemycdn.com/course/750x422/5346426_982e_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/taCk3NWStFzCUzO_ESWmw4OUxDAb18Is_4j1VUZS5lQnXGMCJJ1490thco9zaein9YLN4l8LEbuK9Hn1TOP6ZIZ-3sYhK_xpNdgnQ-GJfLMjXy1O81Uqd7_1soXy2YCiEZooyBEr7kNCBGmHVX_SbI8Ot2OGb6l5Ih5vtI1HMjL-09W6Nd8toEiPo44ma8egISBPuHBIl_4SO17ZOYFKutNYeNuLgibqPM-5tJ-5fmIukLzK8KBiSorOcTMqmESV1JFPGW5-EU9mGdjnZTT1DP_toQyHZvFWcVTdbL64KP1pGQUhhFZydBts57MeP2xn1mDKKQnbG-drE5pPfZdBkA.jpg",
    "source": "https://t.me/Udemy4U/87989",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T06:27:28+00:00",
@@ -4087,10 +4125,7 @@
    "instructor": "Marcus Menti +1",
    "updated": "05/23",
    "category": "Graphic Design And Illustration",
-   "coupon": "15879E71146D9442D071",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 3.5
+   "coupon": "15879E71146D9442D071"
   },
   {
    "id": "tg:udemy_learning_courses/46996",
@@ -4099,7 +4134,7 @@
    "page_slug": "complete-video-editing-course-with-motion-graphics",
    "url": "https://www.udemy.com/course/complete-video-editing-course-with-motion-graphics/?couponCode=B3B8E168025DD8F29D91",
    "title": "Complete Video Editing Course With Motion Graphics",
-   "image": "https://img-c.udemycdn.com/course/750x422/5320834_ae1a.jpg",
+   "image": "https://cdn4.telesco.pe/file/g_OPT_UH_55IM2aMsHN-qDjNEv_9kIwJL56WisS2S4lS6JAAu1J4dsoWaIF7WcbIZPpd27L3UsGb9kMQq4Ydtm-a1e0GoWHiG4oyeB1eF41iwEgWZprjqRfiy0Sv_k4bCDQfladP0qRpAFiw765m1bdNFIQczcxFTRtEiFL5Atz7wxaPRHMZzGcWBu7b0qgVYT7LcF-BnyJU9_EwpkW0DRs89GRhflfu1rCRsh2ogO0THZ_oEYJDfGrTS2fJD_mbg9shmjZ8laJxqjAtcB3W0ur6Gd1Z0Qxm-E6I_nIncg5gThnq-9bbI6HJRPzP_FePKSXwXlxoSWCbF6_jB6xSrw.jpg",
    "source": "https://t.me/udemy_learning_courses/46996",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-08T06:19:02+00:00",
@@ -4112,10 +4147,7 @@
    "instructor": "Nerding I/O +1",
    "updated": "05/26",
    "category": "Video Design",
-   "coupon": "B3B8E168025DD8F29D91",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 3
+   "coupon": "B3B8E168025DD8F29D91"
   },
   {
    "id": "rd:42496",
@@ -4433,7 +4465,7 @@
    "page_slug": "icf-acc-practice-mock-test-basic-ethics-and-scenario-based",
    "url": "https://www.udemy.com/course/icf-acc-practice-mock-test-basic-ethics-and-scenario-based/?couponCode=10TARGET1",
    "title": "ICF ACC Practice Mock Test | Basic Ethics and Scenario Based",
-   "image": "https://img-c.udemycdn.com/course/750x422/6584665_98a8_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/qS8PmQ3_NrpNj-KDgMSXBlgfhh8sLZfOrxX9Z5NtpcKhLsZc8flnMfimkc0v_prj0fYQj-PTpxgBasutsC-eUMK-yTjW3OmvzQIf4YiFwMu7mD1Maw41Zl2daih33VQO6dGUmqL4fXsM230ruJ5hhnb5HuaS3KBXv8j04PLarUnoelVNxMzPW5ZB-VKuos7AE-Abup0VO5CygwAACjIbecvIm02mtcyRjVrpzpyMaM5u9wjjgIUZ1t2onjN-y5v4D-0WMccpneaZTVW7m5XMZ4HNvQPvA23i1gtWg71fSV9RFJX9fr4xqRzEH-SjCTq25SO1XYmhTzKrFXyX8RY7GA.jpg",
    "source": "https://t.me/udemy_learning_courses/46994",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-08T03:47:27+00:00",
@@ -4446,9 +4478,7 @@
    "instructor": "Mindfullness Life +1",
    "updated": "06/26",
    "category": "Personal Transformation",
-   "coupon": "10TARGET1",
-   "price": 19.99,
-   "language": "English"
+   "coupon": "10TARGET1"
   },
   {
    "id": "tg:Udemy4U/87985",
@@ -4946,7 +4976,7 @@
    "page_slug": "financial-services-overview-of-retail-banking",
    "url": "https://www.udemy.com/course/financial-services-overview-of-retail-banking/?couponCode=8THOCT",
    "title": "Financial Services - Overview of Retail Banking",
-   "image": "https://img-c.udemycdn.com/course/750x422/6404137_5601.jpg",
+   "image": "https://cdn4.telesco.pe/file/mn-mPbSQDIv205Ady8ESNMWD9MlHqdkLtzbGmyazvScHQ2wDtyNFJK_VN7upa4fKeMbwdJYq2jIeSof3aQVpmrBedkM-bkVhLcL774yrAVrRcYQSbvZ0ZxZyCymVeIQFwgfj61Yi-gn4kQX5xEgrY6JtkP1gBLGHtUgKtPU0jyeGslNwWP7pOUlU4hd5tj6a5noUgCsDCkUO89k6S8Rh7VSC_aLJgK_DtgtJ4Jfwwsd_CD_6-MpnjdhAyrCXpgk9QQ7xOh9U9v57iy4qdElMoqx5rS2mMXRPM5RvwEIglKgNJJXNLPvwzXUvVc9R9dos5h4ic_IkfXqelmiEoXrfmw.jpg",
    "source": "https://t.me/udemy_learning_courses/46989",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-07T21:57:17+00:00",
@@ -4959,10 +4989,7 @@
    "instructor": "Baba Oyewole",
    "updated": "05/26",
    "category": "Finance",
-   "coupon": "8THOCT",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 1
+   "coupon": "8THOCT"
   },
   {
    "id": "tg:udemy_learning_courses/46988",
@@ -4971,7 +4998,7 @@
    "page_slug": "practice-tests-for-uscg-tankman-pic-2026-exam-prep",
    "url": "https://www.udemy.com/course/practice-tests-for-uscg-tankman-pic-2026-exam-prep/?couponCode=111B07B43C855E9821EC",
    "title": "Practice Tests For USCG Tankman PIC : 2026 Exam Prep | Udemy",
-   "image": "https://img-c.udemycdn.com/course/750x422/7279183_eccc_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/UDsWRSf-o5GOGKiMiQ3eEtIFJcqKmGR8JHbix6hA75hSNzLLcQXlwXS2JBfFZ-AtzyC6yRL_Es1aC0FPZVg2-huX6xAwD_f5WhqBXkmK7wjwLYU-707MoGGkUj0KiUkri-_JPP7YDqdZF_GvmGo19kS6ZfN99Ppv0BNtaQt6sv3Rwv3A12OgQ2bib21PmFOVAvZ-y0zkR5qBVnvOmJJ_06FGLsCRsBN8HuotUpSOGG9ZXgyTpUgozZp6XqSg6RstBfnPJZTol22bE9RqNSxHAPtUz7Ocy67B_N2wdKciUMpuD6983u96tB1CGTIsDDifIvv3liICxppvBjDbmRGUYw.jpg",
    "source": "https://t.me/udemy_learning_courses/46988",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-07T20:55:56+00:00",
@@ -4983,9 +5010,7 @@
    "instructor": "Test - Craft Academy",
    "updated": "08/26",
    "category": "New",
-   "coupon": "111B07B43C855E9821EC",
-   "price": 19.99,
-   "language": "English"
+   "coupon": "111B07B43C855E9821EC"
   },
   {
    "id": "tg:Udemy4U/87976",
@@ -5349,36 +5374,13 @@
    "price": 84.99
   },
   {
-   "id": "tg:Udemy4U/87972",
-   "provider": "Udemy",
-   "slug": "isaca-certified-information-security-manager-practice-exams",
-   "page_slug": "isaca-certified-information-security-manager-practice-exams",
-   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
-   "title": "Highest_Rated",
-   "image": "https://img-c.udemycdn.com/course/750x422/6205671_e8a7_5.jpg",
-   "source": "https://t.me/Udemy4U/87972",
-   "channel": "Udemy4U",
-   "posted_at": "2026-10-07T16:00:25+00:00",
-   "status": "unknown",
-   "duration": "Get exam-ready with 6 ISACA CISM practice tests featuring 900 questions aligned with ISACA’s real exam structure",
-   "uses_left": 72,
-   "rating": 5.0,
-   "reviews": 10,
-   "instructor": "Robert Karamagi",
-   "updated": "10/25",
-   "category": "Highest Rated",
-   "coupon": "4ED51A0AB16342E36F5F",
-   "price": 19.99,
-   "language": "English"
-  },
-  {
    "id": "tg:udemy_learning_courses/46983",
    "provider": "Udemy",
    "slug": "financial-services-funds-flow-optimization-concepts",
    "page_slug": "financial-services-funds-flow-optimization-concepts",
    "url": "https://www.udemy.com/course/financial-services-funds-flow-optimization-concepts/?couponCode=8THOCT",
    "title": "Financial Services - Funds Flow Optimization Concepts",
-   "image": "https://img-c.udemycdn.com/course/750x422/6560763_3fe2.jpg",
+   "image": "https://cdn4.telesco.pe/file/ekeQCukwO2C3j5LN3_JTRe5jw2akXErwExUOyvZPJsANLunN6K_404adZjFSt9SrNc68hso9puf7CXRWpQBsqNfANEcZAJsOjJMuvnwj3pKtRepSsJjUA1pBSt0DIQcEp-5Zsn2ZFKKtvHUmaLXk3chOXf6YL_LRjNSzPsoLNgELDoz1bVaidxdyflk6DP1QJ4sBlcVfAeM1lqHtuM_qswyCw9w_T-Uo2H__uW8PHNvI43j7fje2WNGCKpDi_xYAfeOA_sHpAYzYg5Qt_vupI-3O4YSoIBazxlSgD8wcEojASGDpUtqsMliHPv9TtS_x4lgGja2m1nJ68KxKiZwKiA.jpg",
    "source": "https://t.me/udemy_learning_courses/46983",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-07T15:49:12+00:00",
@@ -5391,10 +5393,7 @@
    "instructor": "Baba Oyewole",
    "updated": "06/26",
    "category": "Finance",
-   "coupon": "8THOCT",
-   "price": 44.99,
-   "language": "English",
-   "lectures": 1
+   "coupon": "8THOCT"
   },
   {
    "id": "rd:83676",
@@ -6508,7 +6507,7 @@
    "page_slug": "complete-ms-office-and-web-design-development-course",
    "url": "https://www.udemy.com/course/complete-ms-office-and-web-design-development-course/?couponCode=C633E08ADB6F9661995F",
    "title": "Complete MS Office and Web Design Development Course",
-   "image": "https://img-c.udemycdn.com/course/750x422/5315174_1660.jpg",
+   "image": "https://cdn4.telesco.pe/file/RRNyL0a0LQ1URBaeWWrrM7oaI4LHGwC6XHbNP04enngdJ58o84ATHVoVhod4ZBF8KDvgNWTwAPQTzKwye-bLnGHfQrKRIL_TZy87wF7JunTdVfpdUxaI-Zn8C90EgNSmN0_gVQZSpEqsokxX5W5Yj7wVn0sijSu9LCZcgWq1U6Yx-4NPhkIAuTxx_Ys_aTD5pwM0A4fdsv9IVJ60S6zXgb8g8yqxODRzhnF2ERN83RCIlB8ZXVhzgUBea1Q2Qd7zKPAR9KGGDqqkGSQtcoVs6xLRzckqAW_FSz_KknaVpA7_6v5vGKLHltaT5ph2KWD5QhVVyCCQo1EPkymMjvxC0A.jpg",
    "source": "https://t.me/Udemy4U/87963",
    "channel": "Udemy4U",
    "posted_at": "2026-10-07T08:48:36+00:00",
@@ -6521,10 +6520,7 @@
    "instructor": "Nerding I/O +1",
    "updated": "05/26",
    "category": "Microsoft",
-   "coupon": "C633E08ADB6F9661995F",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 10.5
+   "coupon": "C633E08ADB6F9661995F"
   },
   {
    "id": "tg:udemy_learning_courses/46976",
@@ -6687,7 +6683,7 @@
    "page_slug": "smart-goals-parenting",
    "url": "https://www.udemy.com/course/smart-goals-parenting/?couponCode=8THOCT",
    "title": "SMART Goals Parenting",
-   "image": "https://img-c.udemycdn.com/course/750x422/6041048_43ee_3.jpg",
+   "image": "https://cdn4.telesco.pe/file/lAiV15wrgBuCjy0Wn7HenIrwED-NPZItey7RwNvWo3ObNN271gICTqILoyMnAUhsHWJFrKpzbMDfMmNxd3-nZxNz8BKAvtsta0YAOFN2in-nk3XEiw8KTdT2j3VzeopvRSG-WS7pGgMeFUO3Bvp7Qmx_NwgPIfzmxVbPH2wjdxeG_yz7ACcE45ZvUoneRTZ397IUFB-ZwYQuK3LZajZxzdjS6Mz4YPOP0HEmMe6Bx_iQi-U1WTbfWZp_bFuD0W5cM0Rey64mGjLsinkt7gM9CRGpr8S9njg4jYSBXEUokk8vUEe6thZDoNxw-0CxP_9KCnkiNSmfjIa8aR1F6-3h9w.jpg",
    "source": "https://t.me/udemy_learning_courses/46973",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-07T05:35:34+00:00",
@@ -6700,10 +6696,7 @@
    "instructor": "Helen Hicks +1",
    "updated": "06/24",
    "category": "Parenting And Relationships",
-   "coupon": "8THOCT",
-   "price": 39.99,
-   "language": "English",
-   "lectures": 7
+   "coupon": "8THOCT"
   },
   {
    "id": "tg:Udemy4U/87958",
@@ -6798,7 +6791,7 @@
    "page_slug": "purpose-driven-leadership-t",
    "url": "https://www.udemy.com/course/purpose-driven-leadership-t/?couponCode=8THOCT",
    "title": "Purpose Driven Leadership",
-   "image": "https://img-c.udemycdn.com/course/750x422/4866896_05d0_2.jpg",
+   "image": "https://cdn4.telesco.pe/file/RsIAYvIwy_fcCaf7ZXU_AvuPjoFs0-knmqCx9fKI_EO1QaHmgYB6pcXgBetaKqABIq2rft05v6UJisuRiRT-8JbCW2fcXhLkCNgylUNWsxDcw6IlwLI2_BSuWrebf87H8do9Rx1CkJtKilWDEbYdKsvlRAaszf3Ph7S2rLHAHyKJPn1xRNOWvJCPfAUJRN-EOD9ETveYylV0UwukMEVUQ5ZouOFQ8joHPzehpLVMlowQOdtXU5qe2fIuZULXVL70lHU6zoyRz1NPVpjwdPCne-sjJJiSjC41ZYXldKi9SMT2_2o-BkvU1wbquwUcyZ2dJGFIsG9RYbYnF__Qn_b4dg.jpg",
    "source": "https://t.me/Udemy4U/87955",
    "channel": "Udemy4U",
    "posted_at": "2026-10-07T02:24:39+00:00",
@@ -6811,10 +6804,7 @@
    "instructor": "Baba Oyewole +1",
    "updated": "06/26",
    "category": "Management",
-   "coupon": "8THOCT",
-   "price": 19.99,
-   "language": "English",
-   "lectures": 1.5
+   "coupon": "8THOCT"
   },
   {
    "id": "tg:Udemy4U/87954",
@@ -6970,28 +6960,6 @@
    "category": "Test Prep"
   },
   {
-   "id": "tg:udemy_learning_courses/46968",
-   "provider": "Udemy",
-   "slug": "how-to-transform-your-life-practical-ways",
-   "page_slug": "how-to-transform-your-life-practical-ways",
-   "url": "https://courson.xyz/coupon/how-to-transform-your-life-practical-ways",
-   "via": "courson.xyz",
-   "title": "How to Transform Your Life - practical ways",
-   "image": "https://cdn4.telesco.pe/file/TxcCxbYOX_KyimUGPXEoE_ml1G0f593InnpjlDdtUGta8Qo3Dhvj1JkHyMpRkFHIQcundara_gm8yS0l-1kbtdmdUJbgwRoRxXAxeNUV0T0Bq4EtESzCrO6yaha3YAXFZLDhVjpNj25VuztWxUej2R0saImCPHqWyrQso7-NyvD63ZxBprqrhzS9LCrjzPeLdFb1QSYXr2OLlxuM12y-JyP_RpRoELs7-kqZ8LlLXB24zeUR-reew_XWvOjVC6JaePdESqfNlEWzqWpRY2Wm3cZAO9rTeKt_a6mYwnJj2nYVNC2-FtAXhdEEeozdesImaddtt0CPU7C3PGiaxAJKyg.jpg",
-   "source": "https://t.me/udemy_learning_courses/46968",
-   "channel": "udemy_learning_courses",
-   "posted_at": "2026-10-06T18:46:07+00:00",
-   "status": "unknown",
-   "subtitle": "Ways to help you towards Your desired outcome",
-   "duration": "2 hours • 20 lectures",
-   "uses_left": 31,
-   "rating": 4.5,
-   "reviews": 130,
-   "instructor": "Baba Oyewole",
-   "updated": "03/23",
-   "category": "Personal Transformation"
-  },
-  {
    "id": "tg:udemy_learning_courses/46967",
    "provider": "Udemy",
    "slug": "innovative-ai-practices-in-telemedicine-virtual-care",
@@ -7145,28 +7113,6 @@
    "category": "New"
   },
   {
-   "id": "tg:udemy_learning_courses/46960",
-   "provider": "Udemy",
-   "slug": "icf-acc-practice-mock-test-basic-ethics-and-scenario-based",
-   "page_slug": "icf-acc-practice-mock-test-basic-ethics-and-scenario-based",
-   "url": "https://courson.xyz/coupon/icf-acc-practice-mock-test-basic-ethics-and-scenario-based",
-   "via": "courson.xyz",
-   "title": "ICF ACC Practice Mock Test | Basic Ethics and Scenario Based",
-   "image": "https://cdn4.telesco.pe/file/jafRiU5TNqvfSJ_hBXw93tJDVP5zgwVpNmImN_J1sZ0mN8QiNOm11Gh7M3mOAM6ADv74ZqF-M2wCatKzCTXxK1y6YUtuu8tWhvpzsLYVkFv7-QGUnMnJCTysEhxES4lzbqV1b5AmOSwyJL0uTS7HS3hRX3otjkz52hROk4eZIEL9FP80uW8s8WDtBp0q3fuuFPgfuD1lwoY0xrgtral4lpGalyYrF6Zs5Zg9tWuPhzAgK85g7a5eI16RhLl6lIkDEtzUaxcVT6JiHkn8vjhLFopeMqPWp-S_Ea1LfHONwjxQ2j4LmnXYC0CKp0-RLbXEvJLgvjP7o6HqZb9cuyvXMQ.jpg",
-   "source": "https://t.me/udemy_learning_courses/46960",
-   "channel": "udemy_learning_courses",
-   "posted_at": "2026-10-06T03:36:30+00:00",
-   "status": "unknown",
-   "subtitle": "Associate Certified Coach (ICF ACC) | Code of Ethics and Scenario Based Questions | 2025 Updated",
-   "duration": "360 questions • 6 practice tests. • 6 quizzes",
-   "uses_left": 93,
-   "rating": 4.5,
-   "reviews": 251,
-   "instructor": "Mindfullness Life",
-   "updated": "06/26",
-   "category": "Personal Transformation"
-  },
-  {
    "id": "tg:udemy_learning_courses/46959",
    "provider": "Udemy",
    "slug": "plastics-engineering-iii-industrial-polymer-processing",
@@ -7187,28 +7133,6 @@
    "instructor": "Pedro Portugal",
    "updated": "03/26",
    "category": "Engineering"
-  },
-  {
-   "id": "tg:udemy_learning_courses/46958",
-   "provider": "Udemy",
-   "slug": "financial-services-overview-of-retail-banking",
-   "page_slug": "financial-services-overview-of-retail-banking",
-   "url": "https://courson.xyz/coupon/financial-services-overview-of-retail-banking",
-   "via": "courson.xyz",
-   "title": "Financial Services - Overview of Retail Banking",
-   "image": "https://cdn4.telesco.pe/file/sZfmMx6xTcPNZRDsd70-b59TjtYjLsrOuW1KgWuwAp744mCx9k9qtTBs9H75lU8XWV3w_JXB06KxtDFn17zcmRuiANvK5t2UWkosEVAHLrQwP5JenQeINwbAereRKvT9CKM3UWTAnTQQe51UcFSAoK72uWeTPaq0DrnsaaB-THhWkp0aC8cMQ9sCypeG6rVklc7E-rmb4ml-nZqnJBZ45nxMISjSucljVco3dPdiz4ov3kcVQJ5soRN0OnO1iKbuCnxybSc-fSWUEzV_66_Jtr6YMT257pIlLEuoACwIhbiGEi0iCWkKH18kvuj4LU-tTTANH-FGQ5g_pZTpuZ046w.jpg",
-   "source": "https://t.me/udemy_learning_courses/46958",
-   "channel": "udemy_learning_courses",
-   "posted_at": "2026-10-05T21:31:41+00:00",
-   "status": "unknown",
-   "subtitle": "Get an understanding of Retail Banking, services they provide, products they offer with ample examples",
-   "duration": "1 hour • 18 lectures • 1 practice tests",
-   "uses_left": 6,
-   "rating": 4.4,
-   "reviews": 213,
-   "instructor": "Baba Oyewole",
-   "updated": "05/26",
-   "category": "Finance"
   },
   {
    "id": "tg:udemy_learning_courses/46957",
