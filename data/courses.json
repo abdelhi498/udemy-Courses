@@ -1,1 +1,17 @@
-{"updated_at": null, "count": 0, "courses": []}
+{
+ "updated_at": "2026-10-09T05:40:37+00:00",
+ "count": 0,
+ "sources": {
+  "Udemy4U": {
+   "messages": 60,
+   "courses": 0,
+   "error": null
+  },
+  "udemy_learning_courses": {
+   "messages": 60,
+   "courses": 0,
+   "error": null
+  }
+ },
+ "courses": []
+}
