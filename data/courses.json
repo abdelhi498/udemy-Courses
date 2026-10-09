@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-09T06:13:49+00:00",
+ "updated_at": "2026-10-09T06:20:58+00:00",
  "count": 394,
  "sources": {
   "Udemy4U": {
@@ -259,7 +259,8 @@
    "status": "unknown",
    "category": "Test Prep",
    "language": "English",
-   "price": 29.99
+   "price": 29.99,
+   "checked_at": "2026-10-09T06:20:58+00:00"
   },
   {
    "id": "rd:81527",
@@ -275,7 +276,8 @@
    "status": "unknown",
    "category": "Other IT & Software",
    "language": "English",
-   "price": 29.99
+   "price": 29.99,
+   "checked_at": "2026-10-09T06:20:58+00:00"
   },
   {
    "id": "rd:81537",
@@ -291,7 +293,8 @@
    "status": "unknown",
    "category": "Other IT & Software",
    "language": "English",
-   "price": 29.99
+   "price": 29.99,
+   "checked_at": "2026-10-09T06:20:58+00:00"
   },
   {
    "id": "rd:81536",
@@ -307,7 +310,8 @@
    "status": "unknown",
    "category": "IT Certifications",
    "language": "English",
-   "price": 29.99
+   "price": 29.99,
+   "checked_at": "2026-10-09T06:20:58+00:00"
   },
   {
    "id": "rd:81534",
@@ -2421,27 +2425,6 @@
    "category": "General Health"
   },
   {
-   "id": "tg:Udemy4U/87999",
-   "provider": "Udemy",
-   "slug": "isaca-certified-information-security-manager-practice-exams",
-   "page_slug": "comptia-project-plus-practice-exams",
-   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
-   "title": "Highest_Rated",
-   "image": "https://cdn4.telesco.pe/file/Tll4DfMQ4AnPDjFwI5nNuj-4AcsaivOd4zFIhfwXh4j_4aR_7TBc_sDnT5TORyEvNO-VuhTPd6UWWj3cngV86pfte9pWj2lRcZ5wocTacMByueHuLU1j2uFozeK4gjtSxleB-Eiv29l3aKaFGYUKOYSgol0ksBXU3JIFV6SVdTtwP6hsAsS1s_ws-HhXFkeUOpc-7VbRX61ee3-d_z2_XkCzn9Z4mIcBnYpkN609hYkrUoSZu1A4AnsjokK7RVA27P6lOmlCMK18b_vo3ee3HEww_YzAIjwT0SjWLeMcUdQ56FziZBsD1j2CUmtXCk47_qSWHVr6FSI-ViOzi8PRkQ.jpg",
-   "source": "https://t.me/Udemy4U/87999",
-   "channel": "Udemy4U",
-   "posted_at": "2026-10-08T14:26:03+00:00",
-   "status": "unknown",
-   "duration": "1020 questions • 6 practice tests. • 6 quizzes",
-   "uses_left": 56,
-   "rating": 5.0,
-   "reviews": 39,
-   "instructor": "Nex Arc",
-   "updated": "07/26",
-   "category": "Highest Rated",
-   "coupon": "4ED51A0AB16342E36F5F"
-  },
-  {
    "id": "rd:83124",
    "provider": "Udemy",
    "slug": "islam-explained-in-90-minutes",
@@ -2728,6 +2711,27 @@
    "language": "English",
    "lectures": 1,
    "price": 34.99
+  },
+  {
+   "id": "tg:Udemy4U/87997",
+   "provider": "Udemy",
+   "slug": "isaca-certified-information-security-manager-practice-exams",
+   "page_slug": "sc-900-practice-exams-security-compliance-identity",
+   "url": "https://www.udemy.com/course/isaca-certified-information-security-manager-practice-exams/?couponCode=4ED51A0AB16342E36F5F",
+   "title": "Highest_Rated",
+   "image": "https://cdn4.telesco.pe/file/VZNZAR_MOrv5tybpyJe9Z7irGdJpvOwtJYKFeMai13zXujO2a75oOhkcNFw3tR7-D6ILLafPGFgylto_zZMvinpIf0O_gSvqqME4pJkoDDmsOGzCkEZE_PbaBO1DoMviP98JF-NukcW073tB4d-4Y-bi06HtKyvfYUECuZyXip5vH5ecMo_pl29VxZQItL7X0mjovgr7c18QvQw8cHe8gKNiFpGAZaduGvcdHcSA_x1QuT4NYiTjXICngvA2cBgPuAsiGxfCMFvC0ONKURyIPfLKSBrp31FYTT6VL5f5A1IxNqil-aHA50j4zkTdNpyVkcJovq-nuQtJaOKuX1T-PA.jpg",
+   "source": "https://t.me/Udemy4U/87997",
+   "channel": "Udemy4U",
+   "posted_at": "2026-10-08T12:50:21+00:00",
+   "status": "unknown",
+   "duration": "1020 questions • 6 practice tests. • 6 quizzes",
+   "uses_left": 76,
+   "rating": 4.9,
+   "reviews": 47,
+   "instructor": "Nex Arc",
+   "updated": "07/26",
+   "category": "Highest Rated",
+   "coupon": "4ED51A0AB16342E36F5F"
   },
   {
    "id": "tg:udemy_learning_courses/47001",
@@ -4095,7 +4099,7 @@
    "page_slug": "essential-adobe-lightroom-course-for-photo-editing",
    "url": "https://www.udemy.com/course/essential-adobe-lightroom-course-for-photo-editing/?couponCode=15879E71146D9442D071",
    "title": "Essential Adobe Lightroom Course for Photo Editing",
-   "image": "https://cdn4.telesco.pe/file/taCk3NWStFzCUzO_ESWmw4OUxDAb18Is_4j1VUZS5lQnXGMCJJ1490thco9zaein9YLN4l8LEbuK9Hn1TOP6ZIZ-3sYhK_xpNdgnQ-GJfLMjXy1O81Uqd7_1soXy2YCiEZooyBEr7kNCBGmHVX_SbI8Ot2OGb6l5Ih5vtI1HMjL-09W6Nd8toEiPo44ma8egISBPuHBIl_4SO17ZOYFKutNYeNuLgibqPM-5tJ-5fmIukLzK8KBiSorOcTMqmESV1JFPGW5-EU9mGdjnZTT1DP_toQyHZvFWcVTdbL64KP1pGQUhhFZydBts57MeP2xn1mDKKQnbG-drE5pPfZdBkA.jpg",
+   "image": "https://cdn4.telesco.pe/file/O9Q0reTxmNHSCYF4d1XQMqcpZkwYz2Vxcra9Vci8_Mos6YdaqlaRFa2l0ZuOC68X8a_DnEjtQPj-2WiNDybx1I-cD3G7fAHaF1Esvs3K4kmjSECzeAHAKkgLybdrsXzmXjQtGVaofJxFPF6_zofQ_Yd5gv2RbmPNFfiPEvYq_0MAZbu7vCyJfBPcpuLTLHYOQsI7P8MD2EXqXuV8CdLZkm0c1t92mcng9WUq6f5CpRmKSVRv3k0lj9FGLjn-P76jkDYSSqEXdF5JJheJ_7Pg55d3qZ9zfSkWNDpRoNCwv24ZvNxjfaT8iuURKu9f7kaRFdA1x1P-iCO2sP0N16cVIg.jpg",
    "source": "https://t.me/Udemy4U/87989",
    "channel": "Udemy4U",
    "posted_at": "2026-10-08T06:27:28+00:00",
@@ -6601,7 +6605,7 @@
    "url": "https://courson.xyz/coupon/competitive-exam-mastery-bank-government-job-quizzes",
    "via": "courson.xyz",
    "title": "Competitive Exam Mastery: Bank & Government Job Quizzes",
-   "image": "https://cdn4.telesco.pe/file/TyuHEJU7ZHm8Z0tlamYY4B-eEfjvN4QcOwYAGyAL0mahtSgCYc4d7A1kLiDsk7hzNZYXhn7F4A7MxZCC_ciEoPYSAwx34cpFPu8AjnhUW2hV3r3Kvig3_bqRO6YfXyCf916OKfpvhxHAn1fohG1bSoJtZnrBohQQHfrM3U_IRxVaGYF-1vJRAxq6XQHgV-DM2gxlOK1GM5aT4VZzBrU7mme2Q4OkMOrzaVdsvgq0RDn0YzXVPkEFNjxFr_sSNVBxfwgKIiy-AZUkoTKgk5zpL_haE1EVngyHaQDdEt-7im8ZD4XntNnc-YdUNK-FsBZyf0JEwnI6FIHGpIQjEX0kKg.jpg",
+   "image": "https://cdn4.telesco.pe/file/nCri9aXgi-SKbtDt26U9QdvK7l2xEAYW7XQUF-VB2kih4Rk3uiLFgjnU2rTdvh5h_FXlPmF0L192kKBMwhJ_ZrYmZQXi3GjkrZmTJbz1KixbatyQwvDfejQeMMJaSNPfHX4YsGlzVn1nQSQmr1SckwTuR-gMeu6B3Xd2u9jST00qWfwI20_M1x0o-F3ty78ZY14WuCwZPwpx_ZfE9PSFKiIqWLLnmGIjs6h2hb364rNqayfHOQh9LMzW6uVVkCi6a638eU1d1OGELZEGWwXka7KLCLqJNghNrcmW868Y0kGDMLjbpnOgS_keB-mYZR90j-_vDMh9-pLCjYuny78D7w.jpg",
    "source": "https://t.me/udemy_learning_courses/46974",
    "channel": "udemy_learning_courses",
    "posted_at": "2026-10-07T06:36:56+00:00",
