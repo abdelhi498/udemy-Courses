@@ -15,9 +15,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install headless browser
-        run: |
-          pip install playwright==1.47.0
-          python -m playwright install --with-deps chromium
       - name: Probe
-        run: python -u -m scraper.probe --browser
+        run: python -u -m scraper.probe --realdiscount

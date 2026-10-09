@@ -78,7 +78,21 @@ def browser():
     return out
 
 
+def realdiscount_sample():
+    _, body = http.fetch(PAGES["realdiscount_api_cdn"].replace("limit=20", "limit=3"), retries=0, timeout=30)
+    data = json.loads(body)
+    items = data.get("items", [])
+    for it in items:
+        it.pop("description", None)
+    return {"top_keys": list(data.keys()), "meta": {k: v for k, v in data.items() if k != "items"}, "items": items}
+
+
 if __name__ == "__main__":
+    if "--realdiscount" in sys.argv:
+        print("PROBE_REPORT_START")
+        print(json.dumps(realdiscount_sample(), ensure_ascii=False, indent=1))
+        print("PROBE_REPORT_END")
+        sys.exit(0)
     report = plain() + (browser() if "--browser" in sys.argv else [])
     print("PROBE_REPORT_START")
     print(json.dumps(report, ensure_ascii=False))
