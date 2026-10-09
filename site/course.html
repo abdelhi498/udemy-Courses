@@ -20,35 +20,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{prefix}}style.css">
   <script type="application/ld+json">{{jsonld}}</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   {{head_code}}
 </head>
 <body data-countdown="{{seconds}}">
-  <header class="hero slim">
+  <nav class="topnav">
     <div class="wrap topbar">
-      <a class="brand" href="{{prefix}}">🎓 <span>{{site_name}}</span></a>
-      <a class="back" href="{{prefix}}">← كل الكورسات</a>
+      <a class="brand" href="{{prefix}}"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
+      <a class="back" href="{{prefix}}">كل الكورسات ←</a>
     </div>
-  </header>
+  </nav>
 
-  <main class="wrap course-page">
+  <main class="wrap">
+    <p class="breadcrumb"><a href="{{prefix}}">الرئيسية</a> › {{category_crumb}}<span>{{course_title}}</span></p>
     {{ad_header}}
 
-    <article class="course">
-      <div class="course-media">{{image}}<span class="ph">{{provider}}</span></div>
-      <div class="course-info">
-        <div class="meta"><span class="badge provider">{{provider}}</span>{{status}}</div>
+    <div class="course-layout">
+      <article class="course-main">
+        <div class="meta">{{status}}</div>
         <h1>{{course_title}}</h1>
         <p class="course-desc">{{course_desc}}</p>
         {{details}}
-        <p class="time">نُشر <time datetime="{{posted}}">{{posted_date}}</time> • {{channel}}
+        <p class="time">نُشر <time datetime="{{posted}}">{{posted_date}}</time> • المصدر: {{channel}}
           <a href="{{source}}" target="_blank" rel="noopener nofollow" {{source_hidden}}>(المنشور الأصلي)</a></p>
-      </div>
-    </article>
+      </article>
 
-    <section class="unlock">
-      <a class="btn primary big" href="#" data-unlock data-target="{{target}}" data-title="{{course_title}}" data-coupon="{{coupon}}">🎁 احصل على الكورس مجاناً</a>
-      <p class="hint">إذا ظهر السعر على المنصة غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
-    </section>
+      <aside class="buy-box">
+        <div class="buy-media">{{image}}<span class="ph">{{provider}}</span></div>
+        <div class="buy-body">
+          <div class="price-line"><span class="price-free">مجاناً</span>{{price_old}}</div>
+          <a class="btn primary big" href="#" data-unlock data-target="{{target}}" data-title="{{course_title}}" data-coupon="{{coupon}}">🎁 احصل على الكورس مجاناً</a>
+          <ul class="trust">
+            <li>✅ رابط مباشر إلى {{provider}}</li>
+            <li>⏳ الكوبون محدود العدد والمدة</li>
+            <li>🎓 شهادة إتمام من {{provider}} عند إنهاء الكورس</li>
+          </ul>
+          <p class="hint">إذا ظهر السعر على المنصة غير صفر فهذا يعني أن الكوبون انتهى، جرّب كورساً آخر.</p>
+        </div>
+      </aside>
+    </div>
 
     {{ad_course_bottom}}
 
@@ -57,13 +67,16 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى المنصات الرسمية.</p>
-      <p class="social">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="{{prefix}}"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
+        <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى يوديمي مباشرة.</p>
+        <p>© {{year}} {{site_name}}</p>
+      </div>
+      <div class="social">
         <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
         <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
-      </p>
-      <p>© {{year}} {{site_name}}</p>
+      </div>
     </div>
   </footer>
 
@@ -71,8 +84,6 @@
   <script src="{{prefix}}unlock.js"></script>
   <script>
   (() => {
-    // Relative dates + saved theme, like the home page.
-    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
     const rtf = new Intl.RelativeTimeFormat("ar", { numeric: "auto" });
     document.querySelectorAll("time[datetime]").forEach((el) => {
       const s = (new Date(el.getAttribute("datetime")) - Date.now()) / 1000;

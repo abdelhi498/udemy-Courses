@@ -66,36 +66,45 @@ def b64(text):
     return base64.b64encode(text.encode()).decode()
 
 
-def facts_html(c):
-    """Small facts line under a card title: rating, coupons left, duration."""
-    out = []
-    if c.get("rating"):
-        out.append(f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,})' if c.get("reviews") else ""))
-    if c.get("uses_left"):
-        out.append(f'⏳ {c["uses_left"]} كوبون متبقي')
-    if c.get("price"):
-        out.append(f'كان ${c["price"]:g}')
-    return " • ".join(out)
+LANG_AR = {"English": "الإنجليزية", "Arabic": "العربية", "Spanish": "الإسبانية", "French": "الفرنسية",
+           "Portuguese": "البرتغالية", "German": "الألمانية", "Turkish": "التركية", "Italian": "الإيطالية",
+           "Hindi": "الهندية", "Japanese": "اليابانية", "Indonesian": "الإندونيسية", "Russian": "الروسية",
+           "Vietnamese": "الفيتنامية", "Polish": "البولندية", "Urdu": "الأردية", "Chinese": "الصينية",
+           "Korean": "الكورية"}
+
+
+def lang_ar(lang):
+    return LANG_AR.get(lang, lang)
 
 
 def card_html(c, prefix):
     """Server-side version of the card that site/app.js renders (keep them in sync)."""
-    img = (f'<img src="{esc(c["image"])}" alt="{esc(c["title"])}" loading="lazy" '
-           f'onerror="this.remove()">' if c.get("image") else "")
-    status = '<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free" else ""
-    pin = '<span class="badge pin">📌 مميز</span>' if c.get("pinned") else ""
-    age = datetime.now(timezone.utc) - datetime.fromisoformat(c["posted_at"])
-    new = '<span class="badge new">جديد</span>' if age.total_seconds() < 12 * 3600 else ""
-    cat = f'<span class="badge">{esc(c["category"])}</span>' if c.get("category") else ""
-    facts = facts_html(c)
     href = f'{prefix}course/{c["page"]}/'
+    img = (f'<img src="{esc(c["image"])}" alt="{esc(c["title"])}" loading="lazy" onerror="this.remove()">'
+           if c.get("image") else "")
+    old = f'<span class="old-price">${c["price"]:g}</span>' if c.get("price") else ""
+    age = datetime.now(timezone.utc) - datetime.fromisoformat(c["posted_at"])
+    badges = "".join([
+        f'<span class="badge cat">{esc(c["category"])}</span>' if c.get("category") else "",
+        '<span class="badge pin">📌 مميز</span>' if c.get("pinned") else "",
+        '<span class="badge new">جديد</span>' if age.total_seconds() < 12 * 3600 else "",
+        '<span class="badge ok">✓ مؤكد</span>' if c["status"] == "free" else "",
+    ])
+    facts = "".join([
+        f'<span class="rate">{c["rating"]:.1f}' + (f' ({c["reviews"]:,})' if c.get("reviews") else "") + "</span>"
+        if c.get("rating") else "",
+        f'<span class="left">⏳ باقي {c["uses_left"]} كوبون</span>' if c.get("uses_left") else "",
+        f'<span>🌐 {esc(lang_ar(c["language"]))}</span>' if c.get("language") else "",
+    ])
+    by = f'<p class="by">👤 {esc(c["instructor"])}</p>' if c.get("instructor") else ""
     return (
-        f'<article class="card"><a class="thumb" href="{href}">{img}<span class="ph">{esc(c["provider"])}</span></a>'
-        f'<div class="body"><div class="meta"><span class="badge provider">{esc(c["provider"])}</span>{pin}{new}{status}{cat}</div>'
-        f'<h3 class="title"><a href="{href}">{esc(c["title"])}</a></h3>'
-        + (f'<p class="facts">{esc(facts)}</p>' if facts else "") +
-        f'<p class="time"><time datetime="{esc(c["posted_at"])}">{fmt_date(c["posted_at"])}</time> • {esc(c["channel"])}</p>'
-        f'<div class="actions"><a class="btn primary go" href="{href}" data-unlock data-target="{b64(c["url"])}" '
+        f'<article class="card"><a class="thumb" href="{href}" tabindex="-1">{img}'
+        f'<span class="ph">{esc(c["provider"])}</span><span class="ribbon">مجاناً</span>{old}</a>'
+        f'<div class="body"><div class="meta">{badges}</div>'
+        f'<h3 class="title"><a href="{href}">{esc(c["title"])}</a></h3>{by}'
+        + (f'<p class="facts">{facts}</p>' if facts else "") +
+        f'<div class="card-foot"><p class="time"><time datetime="{esc(c["posted_at"])}">{fmt_date(c["posted_at"])}</time></p>'
+        f'<a class="btn primary go" href="{href}" data-unlock data-target="{b64(c["url"])}" '
         f'data-title="{esc(c["title"])}" data-coupon="{esc(c.get("coupon") or "")}">احصل عليه مجاناً</a></div></div></article>'
     )
 
@@ -195,14 +204,15 @@ def build_course_pages(courses, settings, base_url):
         details = [
             ("السعر الأصلي", f'${c["price"]:g} ← مجاناً' if c.get("price") else None),
             ("المدة", c.get("duration") or (f'{c["lectures"]} محاضرة' if c.get("lectures") else None)),
-            ("اللغة", c.get("language")),
+            ("اللغة", lang_ar(c["language"]) if c.get("language") else None),
             ("التقييم", f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,} تقييم)' if c.get("reviews") else "") if c.get("rating") else None),
             ("الكوبونات المتبقية", f'⏳ {c["uses_left"]}' if c.get("uses_left") else None),
+            ("عدد الطلاب", f'{c["students"]:,}' if c.get("students") else None),
             ("المدرّب", c.get("instructor")),
             ("التصنيف", c.get("category")),
             ("آخر تحديث للكورس", c.get("updated")),
         ]
-        details_html = "".join(f"<dt>{k}</dt><dd>{esc(str(v))}</dd>" for k, v in details if v)
+        details_html = "".join(f"<div><dt>{k}</dt><dd>{esc(str(v))}</dd></div>" for k, v in details if v)
         related = [r for r in courses if r is not c][:RELATED_COUNT]
         jsonld = {
             "@context": "https://schema.org",
@@ -234,8 +244,11 @@ def build_course_pages(courses, settings, base_url):
             provider=esc(c["provider"]),
             image=(f'<img src="{esc(c["image"])}" alt="{esc(title)}" onerror="this.remove()">'
                    if c.get("image") else ""),
-            status=('<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free" else "")
-            + (f'<span class="badge">{esc(c["category"])}</span>' if c.get("category") else ""),
+            status=(f'<span class="badge cat">{esc(c["category"])}</span>' if c.get("category") else "")
+            + ('<span class="badge ok">✓ مجاني مؤكد</span>' if c["status"] == "free" else ""),
+            category_crumb=f'<span>{esc(c["category"])}</span> › ' if c.get("category") else "",
+            price_old=(f'<span class="price-old">${c["price"]:g}</span><span class="price-off">-100%</span>'
+                       if c.get("price") else ""),
             posted=esc(c["posted_at"]),
             posted_date=fmt_date(c["posted_at"]),
             channel=esc(c["channel"]),

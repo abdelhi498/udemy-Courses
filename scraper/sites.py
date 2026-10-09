@@ -72,6 +72,7 @@ def parse_tutorialbar(page):
             instructor=_field(obj, "instructorName"),
             rating=round(_num(obj, "rating"), 1) if _num(obj, "rating") else None,
             reviews=int(_num(obj, "ratingCount")) if _num(obj, "ratingCount") else None,
+            students=int(_num(obj, "studentsCount")) if _num(obj, "studentsCount") else None,
             language=_field(obj, "language"),
             category=_field(obj, "category"),
             image=_field(obj, "imageUrl"),

@@ -19,7 +19,7 @@
     {
       "type": "udemyfreebies",
       "name": "udemyfreebies",
-      "enabled": true
+      "enabled": false
     },
     {
       "type": "discudemy",

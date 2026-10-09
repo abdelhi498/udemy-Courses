@@ -19,36 +19,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script type="application/ld+json">{{jsonld}}</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   {{head_code}}
 </head>
 <body data-countdown="{{seconds}}">
-  <header class="hero">
-    <div class="wrap">
-      <div class="topbar">
-        <a class="brand" href="./">🎓 <span>{{site_name}}</span></a>
+  <nav class="topnav">
+    <div class="wrap topbar">
+      <a class="brand" href="./"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
+      <div class="nav-actions">
+        <a class="icon-btn" href="{{telegram}}" target="_blank" rel="noopener" title="تيليجرام" {{telegram_hidden}}>✈️</a>
+        <a class="icon-btn" href="{{facebook}}" target="_blank" rel="noopener" title="فيسبوك" {{facebook_hidden}}>f</a>
         <button id="theme" class="icon-btn" type="button" aria-label="تبديل الوضع الليلي">🌙</button>
       </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span> تحديث تلقائي كل ساعة</span>
       <h1>{{tagline}}</h1>
-      <p class="lead">نجمع لك كوبونات يوديمي والمنصات الأخرى لحظة نزولها. الكوبونات محدودة العدد والمدة، فسارع بالتسجيل.</p>
+      <p class="lead">نجمع لك كوبونات يوديمي بخصم 100% لحظة نزولها من أكثر من مصدر. الكوبونات محدودة العدد والمدة، فسارع بالتسجيل قبل انتهائها.</p>
+      <form class="hero-search" role="search" onsubmit="return false">
+        <span class="ico">🔍</span>
+        <input id="search" type="search" placeholder="ابحث عن كورس… Python, Excel, تصميم" autocomplete="off" aria-label="بحث">
+        <button class="btn primary" type="submit">بحث</button>
+      </form>
       <div class="stats">
-        <span><b id="count">{{count}}</b> كورس متاح</span>
-        <span>آخر تحديث: <b id="updated" data-iso="{{updated}}">—</b></span>
+        <span class="stat"><b id="count">{{count}}</b> كورس مجاني الآن</span>
+        <span class="stat">آخر تحديث: <b id="updated" data-iso="{{updated}}">—</b></span>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="controls" aria-label="بحث وتصفية">
-      <input id="search" type="search" placeholder="ابحث عن كورس… (Python, Excel, تصميم)" autocomplete="off">
-      <select id="sort" aria-label="الترتيب">
-        <option value="new">الأحدث أولاً</option>
-        <option value="old">الأقدم أولاً</option>
-        <option value="az">أبجدياً</option>
-      </select>
-      <select id="lang" aria-label="اللغة"><option value="">كل اللغات</option></select>
-      <label class="check"><input id="verified" type="checkbox"> المؤكدة فقط</label>
+    <section class="toolbar" aria-label="تصفية">
+      <div id="cats" class="chips" role="group" aria-label="التصنيف"></div>
+      <div class="filters">
+        <span class="count" id="result-count"></span>
+        <select id="lang" aria-label="اللغة"><option value="">🌐 كل اللغات</option></select>
+        <select id="sort" aria-label="الترتيب">
+          <option value="new">الأحدث أولاً</option>
+          <option value="rating">الأعلى تقييماً</option>
+          <option value="price">الأغلى سعراً أصلاً</option>
+          <option value="az">أبجدياً</option>
+        </select>
+        <label class="check"><input id="verified" type="checkbox"> المؤكدة فقط</label>
+      </div>
     </section>
-    <div id="providers" class="chips" role="group" aria-label="المنصة"></div>
 
     {{ad_header}}
 
@@ -60,13 +77,16 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى المنصات الرسمية. المصادر: قنوات تيليجرام عامة.</p>
-      <p class="social">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="./"><span class="brand-logo">🎓</span><span>{{site_name}}</span></a>
+        <p>الموقع لا يستضيف أي كورسات؛ كل الروابط تذهب إلى يوديمي مباشرة.</p>
+        <p>© {{year}} {{site_name}}</p>
+      </div>
+      <div class="social">
         <a href="{{facebook}}" target="_blank" rel="noopener" {{facebook_hidden}}>فيسبوك</a>
         <a href="{{telegram}}" target="_blank" rel="noopener" {{telegram_hidden}}>تيليجرام</a>
-      </p>
-      <p>© {{year}} {{site_name}}</p>
+      </div>
     </div>
   </footer>
 
