@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>لوحة التحكم</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <!-- Login -->
+  <section id="login" class="login" hidden>
+    <div class="login-card">
+      <h1>⚙️ لوحة التحكم</h1>
+      <p class="muted">لوحة التحكم تحفظ التعديلات مباشرة في مستودع GitHub الخاص بالموقع، لذلك تحتاج "مفتاح دخول" من GitHub مرة واحدة فقط.</p>
+
+      <details class="steps" open>
+        <summary>كيف أحصل على المفتاح؟ (دقيقتان)</summary>
+        <ol>
+          <li>افتح <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">صفحة إنشاء مفتاح جديد على GitHub</a> (سجّل الدخول إن طُلب منك).</li>
+          <li>في <b>Token name</b> اكتب: <code>لوحة التحكم</code>، وفي <b>Expiration</b> اختر مدة طويلة (مثلاً سنة).</li>
+          <li>في <b>Repository access</b> اختر <b>Only select repositories</b> ثم اختر مستودع الموقع <code id="repo-hint">udemy-Courses</code>.</li>
+          <li>في <b>Permissions</b> افتح <b>Repository permissions</b> واجعل:
+            <ul><li><b>Contents</b> ← Read and write</li><li><b>Actions</b> ← Read and write</li></ul>
+          </li>
+          <li>اضغط <b>Generate token</b> بالأسفل، ثم انسخ المفتاح (يبدأ بـ <code>github_pat_</code>) والصقه هنا.</li>
+        </ol>
+      </details>
+
+      <form id="login-form">
+        <label>المستودع <input id="login-repo" dir="ltr" placeholder="username/udemy-Courses" required></label>
+        <label>المفتاح <input id="login-token" dir="ltr" type="password" placeholder="github_pat_..." required autocomplete="off"></label>
+        <label class="check"><input id="login-remember" type="checkbox" checked> تذكرني على هذا الجهاز</label>
+        <button class="btn primary" type="submit">دخول</button>
+        <p id="login-error" class="error" hidden></p>
+      </form>
+      <p class="muted small">🔒 المفتاح يُحفظ في متصفحك فقط ولا يُرسل لأي مكان غير GitHub.</p>
+    </div>
+  </section>
+
+  <!-- App -->
+  <div id="app" class="layout" hidden>
+    <aside class="side">
+      <div class="side-brand">⚙️ لوحة التحكم</div>
+      <nav id="nav">
+        <a href="#overview" data-tab="overview">📊 نظرة عامة</a>
+        <a href="#courses" data-tab="courses">🎓 الكورسات</a>
+        <a href="#sources" data-tab="sources">📡 المصادر</a>
+        <a href="#ads" data-tab="ads">💰 الإعلانات</a>
+        <a href="#seo" data-tab="seo">🔍 السيو والإعدادات</a>
+      </nav>
+      <div class="side-foot">
+        <a id="open-site" target="_blank" rel="noopener">🌐 فتح الموقع</a>
+        <button id="logout" class="linklike" type="button">🚪 خروج</button>
+      </div>
+    </aside>
+    <main class="content">
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <div id="savebar" class="savebar" hidden>
+    <span>لديك تغييرات غير محفوظة</span>
+    <button id="discard" class="btn" type="button">تراجع</button>
+    <button id="save" class="btn primary" type="button">💾 حفظ ونشر</button>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="repo.js" onerror="window.SITE_REPO=''"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

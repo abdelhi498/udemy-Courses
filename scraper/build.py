@@ -265,7 +265,8 @@ def run(log=print):
 
     if OUT.exists():
         shutil.rmtree(OUT)
-    shutil.copytree(SITE_SRC, OUT, ignore=shutil.ignore_patterns("index.html", "course.html", "404.html"))
+    templates = {"index.html", "course.html", "404.html"}  # rendered below, only at the top level
+    shutil.copytree(SITE_SRC, OUT, ignore=lambda d, names: templates & set(names) if Path(d) == SITE_SRC else ())
     (OUT / "data").mkdir(exist_ok=True)
 
     public = {

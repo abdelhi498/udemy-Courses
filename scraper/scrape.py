@@ -6,6 +6,7 @@ Output: data/courses.json  (turned into the website by scraper/build.py)
 """
 
 import json
+import os
 import re
 import time
 from datetime import datetime, timedelta, timezone
@@ -163,9 +164,13 @@ def run(log=print):
                     course[k] = old[k]
         fresh[course["id"]] = course
 
+    debug = {}
     for channel in channels:
         errors = []
         messages = telegram.fetch_channel(channel, cfg["pages_per_channel"], log, errors)
+        if os.environ.get("SCRAPER_DEBUG"):
+            debug[channel] = [{k: m.get(k) for k in ("post", "date", "text", "links", "photo")}
+                              for m in messages[-8:]]
         found_in_channel = 0
         for msg in messages:
             if not msg["date"] or datetime.fromisoformat(msg["date"]) < cutoff:
@@ -176,6 +181,10 @@ def run(log=print):
         stats[channel] = {"messages": len(messages), "courses": found_in_channel,
                           "error": errors[0] if errors else None}
         log(f"- {channel}: {len(messages)} messages, {found_in_channel} course links")
+
+    if debug:
+        (ROOT / "data" / "debug-messages.json").write_text(
+            json.dumps(debug, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # Courses added by hand from the dashboard.
     for item in settings.get("manual_courses", []):

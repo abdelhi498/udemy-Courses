@@ -69,6 +69,9 @@ def is_ignored(url):
     return any(host == h or host.endswith("." + h) for h in IGNORED_HOSTS)
 
 
+_host_failures = {}
+
+
 def resolve(url, cache, log=print):
     """Follow a redirect/landing page and return the Udemy coupon URL it points to.
 
@@ -77,15 +80,21 @@ def resolve(url, cache, log=print):
     """
     if url in cache:
         return cache[url]
+    host = urlparse(url).netloc.lower()
+    if _host_failures.get(host, 0) >= 2:
+        return None  # this site keeps failing; don't waste the run on it
     result = None
     try:
-        final_url, body = http.fetch(url, retries=0, timeout=15)
+        final_url, body = http.fetch(url, retries=0, timeout=10)
         if normalise_udemy(final_url):
             result = final_url
         else:
             m = UDEMY_COUPON_RE.search(body.replace("&amp;", "&"))
             result = m.group(0) if m else None
+        _host_failures[host] = 0
     except Exception as e:  # noqa: BLE001
         log(f"  ! resolve {url}: {e}")
+        _host_failures[host] = _host_failures.get(host, 0) + 1
+        return None  # not cached: it may work next run
     cache[url] = result
     return result
