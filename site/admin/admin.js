@@ -97,6 +97,7 @@
     s.pinned ||= [];
     s.hidden ||= [];
     s.manual_courses ||= [];
+    s.show_indirect_links ??= false;
     return s;
   }
 
@@ -252,11 +253,15 @@
         const info = !st ? "لم يُسحب بعد (سيُسحب في التحديث القادم)"
           : st.error ? `<span class="badge err">مشكلة</span> ${esc(st.error)}`
           : `${st.messages} رسالة • ${st.courses} كورس في آخر سحب`;
+        const tg = src.type === "telegram";
+        const label = tg ? `@${esc(src.name)}` : esc(src.name);
+        const kind = tg ? "تيليجرام" : "موقع كوبونات (روابط يوديمي مباشرة)";
+        const view = tg ? `https://t.me/s/${encodeURIComponent(src.name)}` : `https://${esc(src.name)}`;
         return `<div class="item">
           <label class="switch" title="تفعيل/إيقاف"><input type="checkbox" data-act="toggle-source" data-i="${i}" ${src.enabled !== false ? "checked" : ""}></label>
-          <div class="grow"><div class="t" dir="ltr" style="text-align:right">@${esc(src.name)}</div><div class="s">تيليجرام • ${info}</div></div>
+          <div class="grow"><div class="t" dir="ltr" style="text-align:right">${label}</div><div class="s">${kind} • ${info}</div></div>
           <div class="btns">
-            <a class="btn sm" href="https://t.me/s/${encodeURIComponent(src.name)}" target="_blank" rel="noopener">👁 عرض</a>
+            <a class="btn sm" href="${view}" target="_blank" rel="noopener">👁 عرض</a>
             <button class="btn sm danger" data-act="del-source" data-i="${i}">حذف</button>
           </div></div>`;
       };
@@ -269,8 +274,13 @@
             <button class="btn primary" type="submit">إضافة</button>
           </form>
         </div>
-        <div class="panel"><h2>القنوات (${S.settings.sources.length})</h2>
+        <div class="panel"><h2>المصادر (${S.settings.sources.length})</h2>
           <div class="list">${S.settings.sources.map(row).join("") || '<p class="empty">لا توجد مصادر بعد.</p>'}</div>
+        </div>
+        <div class="panel">
+          <div class="slot-head"><div><h2>كورسات بدون رابط يوديمي مباشر</h2>
+            <p class="muted small" style="margin:0">بعض القنوات (مثل قنوات courson) تضع رابط موقعها بدلاً من رابط يوديمي. عند الإيقاف، لا تظهر هذه الكورسات إلا إذا وجدنا رابطها المباشر في مصدر آخر.</p></div>
+            <label class="switch"><input type="checkbox" data-bind="show_indirect_links" ${S.settings.show_indirect_links ? "checked" : ""}> إظهار</label></div>
         </div>
         <div class="panel help">💡 للتأكد أن القناة تعمل: اضغط "👁 عرض". إذا ظهرت الرسائل في المتصفح فالموقع يستطيع سحبها.</div>`;
     },

@@ -44,6 +44,7 @@
     const facts = [
       c.rating ? `⭐ ${c.rating.toFixed(1)}${c.reviews ? ` (${c.reviews.toLocaleString("en")})` : ""}` : "",
       c.uses_left ? `⏳ ${c.uses_left} كوبون متبقي` : "",
+      c.price ? `كان $${c.price}` : "",
     ].filter(Boolean).join(" • ");
     return `<article class="card"><a class="thumb" href="${href}">${img}<span class="ph">${esc(c.provider)}</span></a>
       <div class="body"><div class="meta"><span class="badge provider">${esc(c.provider)}</span>

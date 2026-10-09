@@ -10,22 +10,52 @@
     "head_code": ""
   },
   "sources": [
-    {"type": "telegram", "name": "Udemy4U", "enabled": true},
-    {"type": "telegram", "name": "udemy_learning_courses", "enabled": true}
+    {
+      "type": "realdiscount",
+      "name": "real.discount",
+      "enabled": true,
+      "pages": 3
+    },
+    {
+      "type": "telegram",
+      "name": "Udemy4U",
+      "enabled": true
+    },
+    {
+      "type": "telegram",
+      "name": "udemy_learning_courses",
+      "enabled": true
+    }
   ],
   "ads": {
     "countdown_seconds": 30,
     "in_feed_every": 6,
     "slots": {
-      "header": {"enabled": false, "html": ""},
-      "in_feed": {"enabled": false, "html": ""},
-      "countdown": {"enabled": false, "html": ""},
-      "course_bottom": {"enabled": false, "html": ""},
-      "footer": {"enabled": false, "html": ""}
+      "header": {
+        "enabled": false,
+        "html": ""
+      },
+      "in_feed": {
+        "enabled": false,
+        "html": ""
+      },
+      "countdown": {
+        "enabled": false,
+        "html": ""
+      },
+      "course_bottom": {
+        "enabled": false,
+        "html": ""
+      },
+      "footer": {
+        "enabled": false,
+        "html": ""
+      }
     },
     "ads_txt": ""
   },
   "pinned": [],
   "hidden": [],
-  "manual_courses": []
+  "manual_courses": [],
+  "show_indirect_links": false
 }

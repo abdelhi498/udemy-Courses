@@ -73,6 +73,8 @@ def facts_html(c):
         out.append(f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,})' if c.get("reviews") else ""))
     if c.get("uses_left"):
         out.append(f'⏳ {c["uses_left"]} كوبون متبقي')
+    if c.get("price"):
+        out.append(f'كان ${c["price"]:g}')
     return " • ".join(out)
 
 
@@ -102,9 +104,12 @@ def prepare_courses(courses, settings):
     hidden = set(settings.get("hidden", []))
     pinned = settings.get("pinned", [])
     out, used = [], set()
+    show_indirect = settings.get("show_indirect_links", False)
     for c in courses:
         if c["id"] in hidden:
             continue
+        if c.get("via") and not show_indirect:
+            continue  # no direct Udemy link (yet)
         c = dict(c)
         c["page"] = page_slug(c)
         # Same course posted with two coupons: keep the newest one only.
@@ -188,7 +193,9 @@ def build_course_pages(courses, settings, base_url):
                 + (f' {c["subtitle"]}' if c.get("subtitle") else "")
                 + " الكوبون محدود العدد والمدة، فسارع بالتسجيل.")
         details = [
-            ("المدة", c.get("duration")),
+            ("السعر الأصلي", f'${c["price"]:g} ← مجاناً' if c.get("price") else None),
+            ("المدة", c.get("duration") or (f'{c["lectures"]} محاضرة' if c.get("lectures") else None)),
+            ("اللغة", c.get("language")),
             ("التقييم", f'⭐ {c["rating"]:.1f}' + (f' ({c["reviews"]:,} تقييم)' if c.get("reviews") else "") if c.get("rating") else None),
             ("الكوبونات المتبقية", f'⏳ {c["uses_left"]}' if c.get("uses_left") else None),
             ("المدرّب", c.get("instructor")),

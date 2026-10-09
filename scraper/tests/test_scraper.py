@@ -1,8 +1,8 @@
 import unittest
 from pathlib import Path
 
-from scraper import links, telegram
-from scraper.scrape import courses_from_message, title_from_message
+from scraper import links, realdiscount, telegram
+from scraper.scrape import courses_from_message, link_coupon_site_courses, title_from_message
 
 FIXTURE = Path(__file__).parent / "fixtures" / "channel.html"
 CFG = {"resolve_redirects": False, "resolve_timeout": 1}
@@ -73,6 +73,39 @@ class CoursonPostTest(unittest.TestCase):
         [c] = list(courses_from_message(REAL_POST, [0, 0], cache, cfg, print))
         self.assertEqual((c["slug"], c["coupon"]), ("social-media-mm", "OCT39"))
         self.assertNotIn("via", c)
+
+
+RD_ITEM = {"id": 79501, "name": "ChatGPT Pinterest Masterclass", "price": 84.99, "sale_price": 0,
+           "sale_start": "2026-10-09 05:16:19", "lectures": 6, "rating": 4.61,
+           "image": "https://img-c.udemycdn.com/course/750x422/6017558_fab7.jpg",
+           "url": "https://www.udemy.com/course/mastering-social-media-management-and-marketing/?couponCode=BDD5",
+           "store": "Udemy", "type": "external", "category": "Marketing", "subcategory": "Affiliate Marketing",
+           "language": "English"}
+
+
+class RealDiscountTest(unittest.TestCase):
+    def test_item(self):
+        c = realdiscount.course_from_item(RD_ITEM)
+        self.assertEqual((c["id"], c["coupon"], c["price"], c["rating"]), ("rd:79501", "BDD5", 84.99, 4.6))
+        self.assertEqual(c["posted_at"], "2026-10-09T05:16:19+00:00")
+        self.assertEqual(c["category"], "Affiliate Marketing")
+
+    def test_skips_ads_and_paid(self):
+        self.assertIsNone(realdiscount.course_from_item({"id": "ad-1", "type": "ad", "store": "Sponsored"}))
+        self.assertIsNone(realdiscount.course_from_item(dict(RD_ITEM, sale_price=9.99)))
+
+    def test_coupon_site_course_gets_direct_link(self):
+        cfg = {"resolve_redirects": False, "resolve_timeout": 1}
+        [tg] = list(courses_from_message(REAL_POST, [0, 0], {}, cfg, print))
+        rd = realdiscount.course_from_item(RD_ITEM)
+        fresh = {tg["id"]: tg, rd["id"]: rd}
+        link_coupon_site_courses(fresh, lambda *_: None)
+        self.assertEqual(list(fresh), ["tg:Udemy4U/87969"])
+        c = fresh["tg:Udemy4U/87969"]
+        self.assertEqual(c["url"], RD_ITEM["url"].replace("www.udemy.com", "www.udemy.com"))
+        self.assertNotIn("via", c)
+        self.assertEqual(c["uses_left"], 39)  # Telegram details kept
+        self.assertEqual(c["image"], RD_ITEM["image"])
 
 
 class LinksTest(unittest.TestCase):

@@ -12,7 +12,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import links, posts, telegram, udemy
+from . import links, posts, realdiscount, telegram, udemy
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scraper" / "config.json"
@@ -175,6 +175,43 @@ def enrich_with_udemy(courses, cfg, cache, log):
         log(f"  {c['status']:8} {c['slug']}")
 
 
+def _title_key(title):
+    return re.sub(r"[^a-z0-9]+", "", (title or "").lower())
+
+
+def link_coupon_site_courses(fresh, log=print):
+    """Give courses that only have a coupon-site link (e.g. courson.xyz) the direct
+    Udemy link, when another source lists the same course; then drop the duplicate."""
+    direct = [c for c in fresh.values() if c.get("coupon") and c["provider"] == "Udemy"]
+    by_slug = {c["slug"]: c for c in direct}
+    by_title = {_title_key(c["title"]): c for c in direct}
+    upgraded = 0
+    for c in list(fresh.values()):
+        if not c.get("via"):
+            continue
+        match = by_slug.get(c["slug"]) or by_title.get(_title_key(c["title"]))
+        if not match or match["id"] not in fresh:
+            continue
+        for k in ("slug", "coupon", "url"):
+            c[k] = match[k]
+        c.pop("via", None)
+        for k in ("image", "price", "language", "lectures", "status", "checked_at"):
+            if match.get(k):
+                c[k] = match[k]  # Udemy's own image is better than the Telegram copy
+        del fresh[match["id"]]
+        upgraded += 1
+    # Same Udemy course from two sources: keep one (the Telegram post has more details).
+    best = {}
+    for c in sorted(fresh.values(), key=lambda c: c["id"].startswith("rd:")):
+        if c.get("coupon") and c["provider"] == "Udemy":
+            if c["slug"] in best:
+                del fresh[c["id"]]
+            else:
+                best[c["slug"]] = c
+    if upgraded:
+        log(f"- linked {upgraded} coupon-site courses to direct Udemy links")
+
+
 def probe_sites(debug):
     """Debug only: try one link per coupon site and record how it answers."""
     import urllib.request
@@ -229,8 +266,8 @@ def run(log=print):
     resolve_budget = [cfg["max_redirect_lookups"], time.monotonic() + cfg["max_redirect_seconds"]]
 
     settings = load_json(SETTINGS_PATH, {})
-    channels = [src["name"] for src in settings.get("sources", [])
-                if src.get("type") == "telegram" and src.get("enabled", True)]
+    enabled = [src for src in settings.get("sources", []) if src.get("enabled", True)]
+    channels = [src["name"] for src in enabled if src.get("type") == "telegram"]
     channels += cfg.get("telegram_channels", [])  # legacy option
 
     fresh = {}
@@ -260,6 +297,19 @@ def run(log=print):
                           "error": errors[0] if errors else None}
         log(f"- {channel}: {len(messages)} messages, {found_in_channel} course links")
 
+    # Coupon websites with a public list (direct Udemy links).
+    for src in enabled:
+        if src.get("type") != "realdiscount":
+            continue
+        errors = []
+        found = realdiscount.fetch(cutoff.isoformat(timespec="seconds"), pages=int(src.get("pages") or 3),
+                                   log=log, errors=errors)
+        for course in found:
+            add(course)
+        stats[src["name"]] = {"messages": len(found), "courses": len(found),
+                              "error": errors[0] if errors else None}
+        log(f"- {src['name']}: {len(found)} courses")
+
     if debug:
         debug["_probe"] = probe_sites(debug)
         (ROOT / "data" / "debug-messages.json").write_text(
@@ -282,6 +332,7 @@ def run(log=print):
         if cid not in fresh and datetime.fromisoformat(old["posted_at"]) >= cutoff:
             fresh[cid] = old
 
+    link_coupon_site_courses(fresh, log)
     courses = sorted(fresh.values(), key=lambda c: c["posted_at"], reverse=True)
     if cfg["validate_udemy"]:
         enrich_with_udemy(courses, cfg, cache, log)
